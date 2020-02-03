@@ -1,4 +1,4 @@
-# Jimmy Tran: Final Project Pitch
+# Group: Final Project Pitch
 
 ## Problem
 
@@ -20,8 +20,8 @@ Ideally the Google API would be used to allow users to authenticate their own Go
 ### Logged in as Google Account
 ![image2](https://user-images.githubusercontent.com/31261926/73325734-7b7b2280-4247-11ea-9a0a-05500db3fca6.jpg)
 
-### Google Form for Data Submission
-![image3](https://user-images.githubusercontent.com/31261926/73325765-977ec400-4247-11ea-94c7-d5224a1bcf8d.jpg)
+### Form for Data Submission
+
 
 ### Calendar View
 ![image4](https://user-images.githubusercontent.com/31261926/73325792-b67d5600-4247-11ea-94d2-eb93dc6df0bd.jpg)
