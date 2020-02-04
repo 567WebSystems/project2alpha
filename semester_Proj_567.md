@@ -1,16 +1,20 @@
 # Group: Final Project Pitch
 
+## Summary
+
+Create an appointment-scheduling calendar system with Google integration for personal, commercial, or government applications.
+
 ## Problem
 
-Nowadays, people integrate a lot of technology into organizing their daily lives such as note reminders or a virtual calendar. Although these technology comes in handy, it still requires a fair amount of manual work. I have a friend that deals with clients daily whom schedule appointments with him. He would take those appointments and input that information into his daily Google calendar. The problem here is that he would like to have a faster way for him to have those scheduled appointments on his calendar without having to do a lot of typing.
+Nowadays, people integrate a lot of technology into organizing their daily lives such as note reminders or a virtual calendar. Although these technologies come in handy, they still require a fair amount of manual work. I have a friend that deals with clients daily who schedule appointments with him. He would take those appointments and input that information into his daily Google calendar. The problem here is that he would like to have a faster way to have those scheduled appointments on his calendar without doing a lot of typing.
 
 ## Appetite
 
-The appetite for this project should only be a six-week cycle focusing primarily on the core functionality of sending data from a form to the users calendar. After the six-week cycle, the time will be used for testings as well as site design.
+The appetite for this project should only be a six-week cycle focusing primarily on the core functionality of sending data from a form to the users calendar. After the six-week cycle, the time will be used for testing as well as site design.
 
 ## Solution
 
-A solution to this project is to create an appointment scheduling style type of web system that allows the users to fill out a form and have that data transfer to a calendar. Essentially, users would use their Google accounts to fill out a Google form which then would submit to the Google calendar of the person they're trying to make an appointment with. With this solution, clients will be able to set up their own appointments with my friend (or anyone that uses this web system) without him having to manually input it himself.
+A solution for this project is to create an appointment scheduling type of web system that allows the users to fill out a form and have that data transfer to a calendar. Essentially, users would use their Google accounts to fill out a form which then would submit to the Google calendar of the person they're trying to make an appointment with. With this solution, clients will be able to set up their own appointments with my friend (or anyone that uses this web system) without him having to type everything manually.
 
 Ideally the Google API would be used to allow users to authenticate their own Google accounts and post data under their alias.
 
