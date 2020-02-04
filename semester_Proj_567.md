@@ -15,19 +15,19 @@ A solution to this project is to create an appointment scheduling style type of 
 Ideally the Google API would be used to allow users to authenticate their own Google accounts and post data under their alias.
 
 ### Google Sign-in
-![image1](https://user-images.githubusercontent.com/31261926/73325997-7f5b7480-4248-11ea-980c-e314e2b80044.jpg)
+![google_sign_in1](https://user-images.githubusercontent.com/21226482/73783556-83602880-4759-11ea-838f-7faa3118ba49.jpg)
 
 ### Logged in as Google Account
-![image2](https://user-images.githubusercontent.com/31261926/73325734-7b7b2280-4247-11ea-9a0a-05500db3fca6.jpg)
+![google_account2](https://user-images.githubusercontent.com/21226482/73783616-9ffc6080-4759-11ea-8313-eb05cca6072b.jpg)
 
 ### Form for Data Submission
-
+#### *New Sketch(s) needed!!*
 
 ### Calendar View
-![image4](https://user-images.githubusercontent.com/31261926/73325792-b67d5600-4247-11ea-94d2-eb93dc6df0bd.jpg)
+![calendar_view3](https://user-images.githubusercontent.com/21226482/73783638-a7bc0500-4759-11ea-9b1e-955ca858597c.jpg)
 
 ### Monthly View with Appointments
-![image5](https://user-images.githubusercontent.com/31261926/73325824-dd3b8c80-4247-11ea-8624-625f59da2ea8.jpg)
+![monthly_view4](https://user-images.githubusercontent.com/21226482/73783643-aab6f580-4759-11ea-812e-0a9ffe9f0ccd.jpg)
 
 ## Rabbit Holes
 
