@@ -2,7 +2,7 @@
 
 ## Summary
 
-Create an appointment-scheduling calendar system with Google integration for personal, commercial, or government applications.
+Create an appointment-scheduling calendar system with Google integration for personal, commercial, and/or government applications.
 
 ## Problem
 
@@ -19,16 +19,16 @@ A solution for this project is to create an appointment scheduling type of web s
 Ideally the Google API would be used to allow users to authenticate their own Google accounts and post data under their alias as well as an API that would be able to return data from a users calendar to provide available times for appointments.
 
 ### Login
-![login_view1](https://user-images.githubusercontent.com/31261926/73804790-d4edcf00-47bc-11ea-90b9-1811f989fe47.jpg)
+![login_view1](https://user-images.githubusercontent.com/21226482/73808395-677a7800-4795-11ea-813d-e8717856cef7.jpg)
 
 ### Sign-up
-![signup_view2](https://user-images.githubusercontent.com/31261926/73804833-e9ca6280-47bc-11ea-8840-357ee0842f24.jpg)
+![signup_view2](https://user-images.githubusercontent.com/21226482/73808399-6c3f2c00-4795-11ea-889e-1f7a91bbd95b.jpg)
 
-### Logged in as..
+### Logged in as...
 ![loggedin_view3](https://user-images.githubusercontent.com/21226482/73783616-9ffc6080-4759-11ea-8313-eb05cca6072b.jpg)
 
 ### Form for Data Submission
-![formdata_view4](https://user-images.githubusercontent.com/31261926/73804884-049cd700-47bd-11ea-9a08-deeb8a0006f4.jpg)
+![formdata_view4](https://user-images.githubusercontent.com/21226482/73808400-6ea18600-4795-11ea-8eee-db171c3e3ffc.jpg)
 
 ### Calendar View
 ![calendar_view5](https://user-images.githubusercontent.com/21226482/73783638-a7bc0500-4759-11ea-9b1e-955ca858597c.jpg)
