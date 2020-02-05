@@ -14,9 +14,9 @@ The appetite for this project should only be a six-week cycle focusing primarily
 
 ## Solution
 
-A solution for this project is to create an appointment scheduling type of web system that allows the users to fill out a form and have that data transfer to a calendar. Essentially, users would use their Google accounts to fill out a form which then would submit to the Google calendar of the person they're trying to make an appointment with. With this solution, clients will be able to set up their own appointments with my friend (or anyone that uses this web system) without him having to type everything manually.
+A solution for this project is to create an appointment scheduling type of web system that allows the users to fill out a form and have that data transfer to a calendar. Essentially, users would use their Google accounts or an account they sign up with to fill out a form which then would submit to the calendar of the person they're trying to make an appointment with. With this solution, clients will be able to set up their own appointments with anyone that uses this web system without the other end having to document those appointments manually.
 
-Ideally the Google API would be used to allow users to authenticate their own Google accounts and post data under their alias.
+Ideally the Google API would be used to allow users to authenticate their own Google accounts and post data under their alias as well as an API that would be able to return data from a users calendar to provide available times for appointments.
 
 ### Login
 ![login_view1](https://user-images.githubusercontent.com/31261926/73804790-d4edcf00-47bc-11ea-90b9-1811f989fe47.jpg)
