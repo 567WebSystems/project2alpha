@@ -18,20 +18,23 @@ A solution for this project is to create an appointment scheduling type of web s
 
 Ideally the Google API would be used to allow users to authenticate their own Google accounts and post data under their alias.
 
-### Google Sign-in
-![google_sign_in1](https://user-images.githubusercontent.com/21226482/73783556-83602880-4759-11ea-838f-7faa3118ba49.jpg)
+### Login
+![login_view1](https://user-images.githubusercontent.com/31261926/73804790-d4edcf00-47bc-11ea-90b9-1811f989fe47.jpg)
 
-### Logged in as Google Account
-![google_account2](https://user-images.githubusercontent.com/21226482/73783616-9ffc6080-4759-11ea-8313-eb05cca6072b.jpg)
+### Sign-up
+![signup_view2](https://user-images.githubusercontent.com/31261926/73804833-e9ca6280-47bc-11ea-8840-357ee0842f24.jpg)
+
+### Logged in as..
+![loggedin_view3](https://user-images.githubusercontent.com/21226482/73783616-9ffc6080-4759-11ea-8313-eb05cca6072b.jpg)
 
 ### Form for Data Submission
-#### *New Sketch(s) needed!!*
+![formdata_view4](https://user-images.githubusercontent.com/31261926/73804884-049cd700-47bd-11ea-9a08-deeb8a0006f4.jpg)
 
 ### Calendar View
-![calendar_view3](https://user-images.githubusercontent.com/21226482/73783638-a7bc0500-4759-11ea-9b1e-955ca858597c.jpg)
+![calendar_view5](https://user-images.githubusercontent.com/21226482/73783638-a7bc0500-4759-11ea-9b1e-955ca858597c.jpg)
 
 ### Monthly View with Appointments
-![monthly_view4](https://user-images.githubusercontent.com/21226482/73783643-aab6f580-4759-11ea-812e-0a9ffe9f0ccd.jpg)
+![monthly_view6](https://user-images.githubusercontent.com/21226482/73783643-aab6f580-4759-11ea-812e-0a9ffe9f0ccd.jpg)
 
 ## Rabbit Holes
 
