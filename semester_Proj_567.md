@@ -6,7 +6,7 @@ Create an appointment-scheduling calendar system with Google integration for per
 
 ## Problem
 
-Nowadays, people integrate a lot of technology into organizing their daily lives such as note reminders or a virtual calendar. Although these technologies come in handy, they still require a fair amount of manual work. I have a friend that deals with clients daily who schedule appointments with him. He would take those appointments and input that information into his daily Google calendar. The problem here is that he would like to have a faster way to have those scheduled appointments on his calendar without doing a lot of typing.
+People nowadays integrate a lot of technology into organizing their daily lives such as note reminders or a virtual calendar and much more. Although these technologies come in handy, they still require a fair amount of manual work. There are many businesses that deal with clients who schedule appointments daily using some sort of appointment style system. What if those appointments can be scheduled quicker by the user themselves without the need to manually input those appointments on the other end. The problem here is that there should be faster way to have those scheduled appointments on a users calendar without the need to do a lot of typing.
 
 ## Appetite
 
