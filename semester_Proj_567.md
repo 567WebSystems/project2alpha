@@ -1,4 +1,4 @@
-# Group: Final Project Pitch
+# *Group Name*: Final Project Pitch
 
 ## Summary
 
@@ -6,17 +6,17 @@ Create an appointment-scheduling calendar system with Google integration for per
 
 ## Problem
 
-People nowadays integrate a lot of technology into organizing their daily lives such as note reminders or a virtual calendar and much more. Although these technologies come in handy, they still require a fair amount of manual work. There are many businesses that deal with clients who schedule appointments daily using some sort of appointment style system. What if those appointments can be scheduled quicker by the user themselves without the need to manually input those appointments on the other end. The problem here is that there should be faster way to have those scheduled appointments on a users calendar without the need to do a lot of typing.
+People nowadays integrate a lot of technology into organizing their daily lives. These include note reminders, electronic planner apps, virtual calendars and much more. Although these technologies come in handy they still require a fair amount of manual work. There are many businesses that deal with clients who set up appointments daily, using some sort of scheduling system. What if users could schedule those appointments faster — without the need to manually input those appointments on the other end. The problem here is that there should be faster way to have those scheduled appointments on a user's calendar — without the need to do a lot of typing.
 
 ## Appetite
 
-The appetite for this project should only be a six-week cycle focusing primarily on the core functionality of sending data from a form to the users calendar. After the six-week cycle, the time will be used for testing as well as site design.
+The appetite for this project should only be a six-week cycle focusing primarily on the core functionality of sending data from a form to the user's calendar. After the six-week cycle, the time will be used for testing as well as site design.
 
 ## Solution
 
-A solution for this project is to create an appointment scheduling type of web system that allows the users to fill out a form and have that data transfer to a calendar. Essentially, users would use their Google accounts or an account they sign up with to fill out a form which then would submit to the calendar of the person they're trying to make an appointment with. With this solution, clients will be able to set up their own appointments with anyone that uses this web system without the other end having to document those appointments manually.
+A solution for this project is to create an appointment scheduling type of web system that allows the users to fill out a form and have that data transfer to a calendar. Essentially, users would use their Google account (or other account, after sign-up) to fill out a form which then would submit to the calendar of the person they want to make an appointment with. With this solution, clients will be able to set up their own appointments with anyone that uses this web system without the other end having to document those appointments manually.
 
-Ideally the Google API would be used to allow users to authenticate their own Google accounts and post data under their alias as well as an API that would be able to return data from a users calendar to provide available times for appointments.
+Ideally the Google API would be used to allow users to authenticate their own Google accounts and post data under their alias. There would also be an API which retrieves data from a user's calendar to provide available times for appointments.
 
 ### Login
 ![login_view1](https://user-images.githubusercontent.com/21226482/73808395-677a7800-4795-11ea-813d-e8717856cef7.jpg)
@@ -38,13 +38,13 @@ Ideally the Google API would be used to allow users to authenticate their own Go
 
 ## Rabbit Holes
 
-* User is outdated or an elderly user whom does not own a Google account
+* User is outdated or an elderly user who does not have a Google account
 * Distinguishing users (users who are making appointments vs. user who is accepting appointments)
-* How to not overlap appointment times
-* Should user accepting appointments be able to approve appointments before being added to calendar
-* How to reverse or undo an appointment after already being submitted
+* How to avoid overlapping appointment times?
+* Should user accepting appointments be able to approve appointments before being added to calendar?
+* How to reverse or undo an appointment after already being submitted?
 
 ## No Goes
 
 * Normal users will not be able to accept or approve appointments
-* Elevated users that are accepting appointments will not be able to create an appointment
+* Elevated users (that are accepting appointments) will not be able to create an appointment
