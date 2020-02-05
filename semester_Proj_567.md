@@ -47,4 +47,6 @@ Ideally the Google API would be used to allow users to authenticate their own Go
 ## No Goes
 
 * Normal users will not be able to accept or approve appointments
+* Normal users will not cancel their appointments and/or edit them
 * Elevated users (that are accepting appointments) will not be able to create an appointment
+* No drag and drop feature for appointments on calendar
