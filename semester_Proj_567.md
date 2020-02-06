@@ -36,6 +36,11 @@ Sign-up form will allow user to create an account manually with an valid email i
 ![signup_view2](https://user-images.githubusercontent.com/21226482/73808399-6c3f2c00-4795-11ea-889e-1f7a91bbd95b.jpg)
 
 ___
+### Sign-up Confirmation
+
+![SignUpConfirm1](https://user-images.githubusercontent.com/21226482/73970800-66eff780-48e3-11ea-9d10-d963cb9d3ce2.jpg)
+
+___
 ### Dashboard
 
 Dashboar will have two functionalities
@@ -54,6 +59,17 @@ To book an appointment user is required to fill out the form with basic informat
 ![formdata_view4](https://user-images.githubusercontent.com/21226482/73808400-6ea18600-4795-11ea-8eee-db171c3e3ffc.jpg)
 
 ___
+### Appointment Confirmation
+
+![ApptConfirm2](https://user-images.githubusercontent.com/21226482/73970937-a4ed1b80-48e3-11ea-8b4b-f9940d390a70.jpg)
+
+___
+### My Appointments
+
+![MyAppts3](https://user-images.githubusercontent.com/21226482/73970940-a74f7580-48e3-11ea-81c1-faf6563bf38b.jpg)
+
+
+___
 ### Calendar View
 
 Calendar view will show the coming months. Users can click on any month to get detailed view.
@@ -64,6 +80,16 @@ ___
 ### Monthly View with Appointments
 
 ![monthly_view6](https://user-images.githubusercontent.com/21226482/73783643-aab6f580-4759-11ea-812e-0a9ffe9f0ccd.jpg)
+
+___
+### Detailed Appointment View
+
+![MoreDetail4](https://user-images.githubusercontent.com/21226482/73970945-a9b1cf80-48e3-11ea-8051-17e2b495e561.jpg)
+
+___
+### Logout confirmation
+
+![LogoutConfirm5](https://user-images.githubusercontent.com/21226482/73970949-ac142980-48e3-11ea-9f27-d6cb8ec5b9f7.jpg)
 
 ___
 ## Rabbit Holes
