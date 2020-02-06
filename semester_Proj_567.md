@@ -1,4 +1,4 @@
-# *Just Do It*: Final Project Pitch
+# *Just Do It*! - Final Project Pitch
 
 ___
 ## Summary
