@@ -44,7 +44,7 @@ Dashboar will have two functionalities
 2. View Own calendar
     * This will allow user to see it's own appointments and schedules in the calendar.
 
-![loggedin_view3](https://user-images.githubusercontent.com/21226482/73783616-9ffc6080-4759-11ea-8313-eb05cca6072b.jpg)
+![dashboardImage](https://user-images.githubusercontent.com/54300222/73910750-160edd80-48a8-11ea-9b6f-0f1d8e73321f.png)
 
 ___
 ### Booking Appointment
