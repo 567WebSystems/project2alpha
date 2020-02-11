@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "testing",
   "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
   "repository": "https://github.com/567WebSystems/project2alpha/tree/nodejs-testing",
-  "author": "dkomarov",
+  "author": "Denis Komarov",
   "license": "MIT"
 }
