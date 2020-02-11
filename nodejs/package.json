@@ -8,5 +8,8 @@
   },
   "repository": "https://github.com/567WebSystems/project2alpha/tree/nodejs-testing",
   "author": "Denis Komarov",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "googleapis": "^39.2.0"
+  }
 }
