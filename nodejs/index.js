@@ -109,15 +109,15 @@ function insertEvents(auth) {
 
   const calendar = google.calendar({ version: 'v3', auth });
   var event = {
-    'summary': 'Google I/O 2015',
+    'summary': 'Google I/O 2020',
     'location': '800 Howard St., San Francisco, CA 94103',
     'description': 'A chance to hear more about Google\'s developer products.',
     'start': {
-      'dateTime': '2020-02-19T09:00:00-07:00',
+      'dateTime': '2020-02-20T09:00:00-07:00',
       'timeZone': 'America/Los_Angeles',
     },
     'end': {
-      'dateTime': '2020-02-19T17:00:00-07:00',
+      'dateTime': '2020-02-20T17:00:00-07:00',
       'timeZone': 'America/Los_Angeles',
     },
     'recurrence': [
