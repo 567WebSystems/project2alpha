@@ -1,32 +1,31 @@
 var express = require('express');
 var router = express.Router();
-
+var calendarData;
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index');
 });
 
 router.post("/", function(req, res){
-  var calendarData = {
-    summary: req.body.summary,
-    location: req.body.location,
-    description: req.body.description,
-    start: req.body.start,
-    end: req.body.end,
-    recurrence: req.body.recurrence,
-    attendees: req.body.attendees,
-    reminders: req.body.reminders
+ calendarData = {
+    'summary': req.body.summary,
+    'location': req.body.location,
+    'description': req.body.description,
+    'start': req.body.start,
+    'end': req.body.end,
+    'recurrence': req.body.recurrence,
+    'attendees': req.body.attendees,
+    'reminders': req.body.reminders
   };
   console.log(calendarData);
   res.render('index');
-
   gCal(calendarData);
 });
 
 module.exports = router;
 
-function gCal(calendarData) {
-  if (calendarData) {
+function gCal(calData) {
+  if (calData) {
     const fs = require('fs');
     const readline = require('readline');
     const {google} = require('googleapis');
@@ -124,15 +123,45 @@ function gCal(calendarData) {
       });
     }
 
-    function insertEvents(auth, calendarData) {
+    function insertEvents(auth) {
 
       const calendar = google.calendar({ version: 'v3', auth });
+
+      console.log(calendarData);
+      var event = {
+        'summary': calendarData.summary,
+        'location': calendarData.location,
+        'description': calendarData.description,
+        'start': {
+          'dateTime': calendarData.start + ':00-07:00',
+          'timeZone': 'America/Los_Angeles',
+        },
+        'end': {
+          'dateTime': calendarData.end + ':00-07:00',
+          'timeZone': 'America/Los_Angeles',
+        },
+        'recurrence': [
+          'RRULE:FREQ=DAILY;COUNT=2'
+        ],
+        'attendees': [
+          {'email': 'lpage@example.com'},
+          {'email': 'sbrin@example.com'},
+        ],
+        'reminders': {
+          'useDefault': false,
+          'overrides': [
+            {'method': 'email', 'minutes': 24 * 60},
+            {'method': 'popup', 'minutes': 10},
+          ],
+        },
+      };
+
 
       calendar.events.insert({
         auth: auth,
         calendarId: 'primary',
-        resource: calendarData,
-      }, function(err, calendarData) {
+        resource: event,
+      }, function(err, event) {
         if (err) {
           console.log('There was an error contacting the Calendar service: ' + err);
           return;
