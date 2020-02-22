@@ -1,14 +1,10 @@
 var express = require('express');
 var router = express.Router();
-<<<<<<< Updated upstream
-=======
 var calendarData;
->>>>>>> Stashed changes
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index');
 });
-
 
 router.post("/", function(req, res){
  calendarData = {
@@ -23,11 +19,6 @@ router.post("/", function(req, res){
   };
   console.log(calendarData);
   res.render('index');
-<<<<<<< Updated upstream
-});
-
-module.exports = router;
-=======
   gCal(calendarData);
 });
 
@@ -181,6 +172,3 @@ function gCal(calData) {
     }
   }
 }
-
-
->>>>>>> Stashed changes
