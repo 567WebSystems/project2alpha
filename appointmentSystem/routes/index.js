@@ -127,18 +127,18 @@ function gCal(calData) {
 
       const calendar = google.calendar({ version: 'v3', auth });
 
-      console.log(calendarData);
+      //console.log(calendarData);
       var event = {
         'summary': calendarData.summary,
         'location': calendarData.location,
         'description': calendarData.description,
         'start': {
           'dateTime': calendarData.start + ':00-07:00',
-          'timeZone': 'America/Los_Angeles',
+          'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone,
         },
         'end': {
           'dateTime': calendarData.end + ':00-07:00',
-          'timeZone': 'America/Los_Angeles',
+          'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone,
         },
         'recurrence': [
           'RRULE:FREQ=DAILY;COUNT=2'
