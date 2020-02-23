@@ -146,16 +146,9 @@ function gCal(calendarData) {
         ],
         'attendees': [
           calendarData.attendees
-          // {'email': 'lpage@example.com'},
-          // {'email': 'sbrin@example.com'},
         ],
         'reminders': [
           calendarData.reminders
-          // 'useDefault': false,
-          // 'overrides': [
-          //   {'method': 'email', 'minutes': 24 * 60},
-          //   {'method': 'popup', 'minutes': 10},
-          // ],
         ]
       };
 
@@ -169,7 +162,7 @@ function gCal(calendarData) {
           console.log('There was an error contacting the Calendar service: ' + err);
           return;
         }
-        console.log('Event created: %s', event.htmlLink);
+        console.log('Event created: %s', calendarData.summary);
       });
 
     }
