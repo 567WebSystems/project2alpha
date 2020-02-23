@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var calendarData;
+var calendarData = {};
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index');
@@ -24,8 +25,8 @@ router.post("/", function(req, res){
 
 module.exports = router;
 
-function gCal(calData) {
-  if (calData) {
+function gCal(calendarData) {
+  if (calendarData) {
     const fs = require('fs');
     const readline = require('readline');
     const {google} = require('googleapis');
@@ -141,19 +142,21 @@ function gCal(calData) {
           'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone,
         },
         'recurrence': [
-          'RRULE:FREQ=DAILY;COUNT=2'
+          'RRULE:FREQ=DAILY;COUNT='+calendarData.recurrence,
         ],
         'attendees': [
-          {'email': 'lpage@example.com'},
-          {'email': 'sbrin@example.com'},
+          calendarData.attendees
+          // {'email': 'lpage@example.com'},
+          // {'email': 'sbrin@example.com'},
         ],
-        'reminders': {
-          'useDefault': false,
-          'overrides': [
-            {'method': 'email', 'minutes': 24 * 60},
-            {'method': 'popup', 'minutes': 10},
-          ],
-        },
+        'reminders': [
+          calendarData.reminders
+          // 'useDefault': false,
+          // 'overrides': [
+          //   {'method': 'email', 'minutes': 24 * 60},
+          //   {'method': 'popup', 'minutes': 10},
+          // ],
+        ]
       };
 
 
