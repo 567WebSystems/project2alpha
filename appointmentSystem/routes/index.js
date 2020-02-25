@@ -8,7 +8,6 @@ router.get('/', function(req, res, next) {
   if (signedIn == false) {
     res.render('sign-in');
   } else {
-    console.log("Attempting to render index page...")
     res.render('index')
   }
 
