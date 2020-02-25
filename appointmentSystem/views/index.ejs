@@ -2,23 +2,71 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+
+    <meta name="google-signin-client_id" content="351815199905-7866h3vhn4lrd4qbe8bk0l8sej8qdaj2.apps.googleusercontent.com">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
     <title>User_Form</title>
   </head>
   <body>
-    <h1>Appointment Form</h1>
-    <section class="appointmentForm">
+    <section id="appointmentForm">
+      <h1>Appointment Form</h1>
       <form method="post" action="/" >
         Summary: <input type="text" id="summary" name="summary"><br><br>
         Location: <input type="text" id=" location" name="location"><br><br>
         Description: <input type="text" id="description" name="description"><br><br>
-        Start: <input type="date" id="start" name="start"><br><br>
-        End: <input type="date" id="end" name="end"><br><br>
-        Recurrence: <input type="text" id="recurrence" name="recurrence"><br><br>
-        Attendees: <input type="text" id="attendees" name="attendees"><br><br>
+        Start: <input type="datetime-local" id="start" name="start"><br><br>
+        End: <input type="datetime-local" id="end" name="end"><br><br>
+        Recurrence: (#) <input type="text" id="recurrence" name="recurrence"><br><br>
+        Attendee Email(s): <input type="text" id="attendees" name="attendees"><br><br>
         Reminders: <input type="text" id="reminders" name="reminders"><br><br>
         <button type="submit">Submit</button>
       </form>
     </section>
+
+    <section class="eventList">
+      <p id="myEvents"></p>
+    </section>
+
+    <script type="text/javascript">
+      var status = false;
+
+      function onSignIn(googleUser) {
+        
+        console.log("Welcome! You are now signed in.");
+
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+    
+        $("#appointmentForm").css("display", "block");
+      }
+
+      function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+          console.log('User signed out.');
+        });
+
+        $("#appointmentForm").css("display", "none");
+      }
+
+    </script>
+
+    <div class="g-signin2" data-onsuccess="onSignIn" ></div>
+    <a href="#" onclick="signOut();">Sign out</a>
+
   </body>
 </html>

@@ -1,12 +1,16 @@
 var express = require('express');
 var router = express.Router();
-var calendarData;
+var signed_in = false;
+
+var calendarData = {};
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index');
-});
+    res.render('index')
+  }
+);
 
-router.post("/", function(req, res){
+router.post('/', function(req, res){
  calendarData = {
     'summary': req.body.summary,
     'location': req.body.location,
@@ -17,15 +21,16 @@ router.post("/", function(req, res){
     'attendees': req.body.attendees,
     'reminders': req.body.reminders
   };
+
   console.log(calendarData);
-  res.render('index');
   gCal(calendarData);
+
 });
 
 module.exports = router;
 
-function gCal(calData) {
-  if (calData) {
+function gCal(calendarData) {
+  if (calendarData) {
     const fs = require('fs');
     const readline = require('readline');
     const {google} = require('googleapis');
@@ -116,6 +121,7 @@ function gCal(calData) {
           events.map((event, i) => {
             const start = event.start.dateTime || event.start.date;
             console.log(`${start} - ${event.summary}`);
+            //console.log(document.getElementById("myEvents").value);
           });
         } else {
           console.log('No upcoming events found.');
@@ -127,33 +133,28 @@ function gCal(calData) {
 
       const calendar = google.calendar({ version: 'v3', auth });
 
-      console.log(calendarData);
+      //console.log(calendarData);
       var event = {
         'summary': calendarData.summary,
         'location': calendarData.location,
         'description': calendarData.description,
         'start': {
           'dateTime': calendarData.start + ':00-07:00',
-          'timeZone': 'America/Los_Angeles',
+          'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone,
         },
         'end': {
           'dateTime': calendarData.end + ':00-07:00',
-          'timeZone': 'America/Los_Angeles',
+          'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone,
         },
         'recurrence': [
-          'RRULE:FREQ=DAILY;COUNT=2'
+          'RRULE:FREQ=DAILY;COUNT='+calendarData.recurrence,
         ],
         'attendees': [
-          {'email': 'lpage@example.com'},
-          {'email': 'sbrin@example.com'},
+          calendarData.attendees
         ],
-        'reminders': {
-          'useDefault': false,
-          'overrides': [
-            {'method': 'email', 'minutes': 24 * 60},
-            {'method': 'popup', 'minutes': 10},
-          ],
-        },
+        'reminders': [
+          calendarData.reminders
+        ]
       };
 
 
@@ -166,7 +167,7 @@ function gCal(calData) {
           console.log('There was an error contacting the Calendar service: ' + err);
           return;
         }
-        console.log('Event created: %s', event.htmlLink);
+        console.log('Event created: %s', calendarData.summary);
       });
 
     }
