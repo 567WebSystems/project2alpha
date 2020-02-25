@@ -1,19 +1,16 @@
 var express = require('express');
 var router = express.Router();
+var signed_in = false;
+
 var calendarData = {};
-var signedIn = false;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  if (signedIn == false) {
-    res.render('sign-in');
-  } else {
     res.render('index')
   }
+);
 
-});
-
-router.post("/", function(req, res){
+router.post('/', function(req, res){
  calendarData = {
     'summary': req.body.summary,
     'location': req.body.location,
@@ -24,9 +21,10 @@ router.post("/", function(req, res){
     'attendees': req.body.attendees,
     'reminders': req.body.reminders
   };
+
   console.log(calendarData);
-  res.render('index');
   gCal(calendarData);
+
 });
 
 module.exports = router;
