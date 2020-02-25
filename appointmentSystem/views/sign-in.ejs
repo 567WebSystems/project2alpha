@@ -2,7 +2,6 @@
   <head>
     <meta charset="utf-8">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script src="../routes/index.js" async defer></script>
 
     <meta name="google-signin-client_id" content="351815199905-7866h3vhn4lrd4qbe8bk0l8sej8qdaj2.apps.googleusercontent.com">
     <meta name="description" content="">
@@ -11,6 +10,25 @@
     <title>sign-in page</title>
   </head>
   <body>
+    <script>
+
+      var status = false;
+
+      function onSignIn(googleUser) {
+        console.log("Welcome! You are now signed in.");
+      
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+      }
+
+    </script>
+
     <div class="g-signin2" data-onsuccess="onSignIn" ></div>
   </body>
 </html>

@@ -3,8 +3,6 @@ var router = express.Router();
 var calendarData = {};
 var signedIn = false;
 
-console.log("in index.js!");
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
   if (signedIn == false) {
@@ -126,6 +124,7 @@ function gCal(calendarData) {
           events.map((event, i) => {
             const start = event.start.dateTime || event.start.date;
             console.log(`${start} - ${event.summary}`);
+            //console.log(document.getElementById("myEvents").value);
           });
         } else {
           console.log('No upcoming events found.');
@@ -177,28 +176,3 @@ function gCal(calendarData) {
     }
   }
 }
-
-function onSignIn(googleUser) {
-  signedIn = true;
-  console.log("Entered onSignIn!!");
-  // Useful data for your client-side scripts:
-  var profile = googleUser.getBasicProfile();
-  console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-  console.log('Full Name: ' + profile.getName());
-  console.log('Given Name: ' + profile.getGivenName());
-  console.log('Family Name: ' + profile.getFamilyName());
-  console.log("Image URL: " + profile.getImageUrl());
-  console.log("Email: " + profile.getEmail());
-
-  // The ID token you need to pass to your backend:
-  var id_token = googleUser.getAuthResponse().id_token;
-  postAJAX('/server/sign-in', {id_token: id_token})
-  .then(function(user) {
-      // The user is now signed in on the server too
-      // and the user should now have a session cookie
-      // for the whole site. 
-      document.location.href = ''
-  })
-  
-  
-};
