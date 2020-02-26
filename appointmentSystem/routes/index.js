@@ -1,16 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var calendarData = {};
-var signedIn = false;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  if (signedIn == false) {
-    res.render('sign-in');
-  } else {
-    console.log("Attempting to render index page...")
     res.render('index')
-  }
 });
 
 router.post("/", function(req, res){
