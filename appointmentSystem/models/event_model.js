@@ -7,7 +7,7 @@ const eventSchema = mongoose.Schema({
   description: { type: String, required: false },
   start: { type: String, required: false },
   end: { type: String, required: false },
-  reccurence: { type: Number, required: false },
+  recurrence: { type: Number, required: false },
   attendees: { type: String, required: false },
   reminders: {type: String, required: false }
 
