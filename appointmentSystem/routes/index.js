@@ -1,10 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose'); 
+const mongoose = require('mongoose');
 
 const Event = require('../models/event_model');
 var calendarData = {};
-
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -13,16 +12,17 @@ router.get('/', function(req, res, next) {
 });
 
 router.post("/", function(req, res){
+    let rb = req.body;
  calendarData = {
     _id: mongoose.Types.ObjectId(),
-    'summary': req.body.summary,
-    'location': req.body.location,
-    'description': req.body.description,
-    'start': req.body.start,
-    'end': req.body.end,
-    'recurrence': req.body.recurrence,
-    'attendees': req.body.attendees,
-    'reminders': req.body.reminders
+    'summary': rb.summary,
+    'location': rb.location,
+    'description': rb.description,
+    'start': rb.start,
+    'end': rb.end,
+    'recurrence': rb.recurrence,
+    'attendees': rb.attendees,
+    'reminders': rb.reminders
  }
 
   console.log(calendarData);
@@ -30,27 +30,25 @@ router.post("/", function(req, res){
 
   const event = new Event({ // parse event
     _id: mongoose.Types.ObjectId(),
-    summary: req.body.summary,
-    location: req.body.location,
-    description: req.body.description,
-    start: req.body.start,
-    end: req.body.end,
-    recurrence: req.body.recurrence,
-    attendees: req.body.attendees,
-    reminders: req.body.reminders,
+    summary: rb.summary,
+    location: rb.location,
+    description: rb.description,
+    start: rb.start,
+    end: rb.end,
+    recurrence: rb.recurrence,
+    attendees: rb.attendees,
+    reminders: rb.reminders,
   });
 
   console.log("event is: " + event)
   console.log("Attempting to store in db...")
   return event.save() // store event in db
-  //return event.save('-__v') // store event in db
-
 
   .then(result => {
     console.log(result); // display stored event
-    res.status(201).json({ 
+    res.status(201).json({
       message: 'Event stored to DB.',
-      storedEvent: { 
+      storedEvent: {
         summary: result.summary,
         location: result.location,
         description: result.description,
@@ -63,15 +61,15 @@ router.post("/", function(req, res){
     })
   })
   .catch(err => {
-    console.log(err); 
+    console.log(err);
     res.status(500).json({
         error: err
     });
   });
-
 });
 
 module.exports = router;
+
 
 function gCal(calendarData) {
   if (calendarData) {
@@ -95,6 +93,7 @@ function gCal(calendarData) {
       authorize(JSON.parse(content), insertEvents);
     });
 
+
     /**
      * Create an OAuth2 client with the given credentials, and then execute the
      * given callback function.
@@ -113,6 +112,7 @@ function gCal(calendarData) {
         callback(oAuth2Client);
       });
     }
+
 
     /**
      * Get and store new token after prompting for user authorization, and then
@@ -172,6 +172,7 @@ function gCal(calendarData) {
       });
     }
 
+
     function insertEvents(auth) {
 
       const calendar = google.calendar({ version: 'v3', auth });
@@ -199,7 +200,6 @@ function gCal(calendarData) {
           calendarData.reminders
         ]
       };
-
 
       calendar.events.insert({
         auth: auth,
