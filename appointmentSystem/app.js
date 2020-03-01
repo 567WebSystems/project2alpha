@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var authRoutes = require('./routes/auth-routes');
-
+const passportSetup = require('./config/passport-setup')
 var app = express();
 
 // mongoDB
