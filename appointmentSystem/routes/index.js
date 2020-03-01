@@ -1,33 +1,75 @@
-var express = require('express');
-var router = express.Router();
-var signed_in = false;
+const express = require('express');
+const router = express.Router();
+const mongoose = require('mongoose');
 
+const Event = require('../models/event_model');
 var calendarData = {};
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
     res.render('index')
-  }
-);
 
-router.post('/', function(req, res){
+});
+
+router.post("/", function(req, res){
+    let rb = req.body;
  calendarData = {
-    'summary': req.body.summary,
-    'location': req.body.location,
-    'description': req.body.description,
-    'start': req.body.start,
-    'end': req.body.end,
-    'recurrence': req.body.recurrence,
-    'attendees': req.body.attendees,
-    'reminders': req.body.reminders
-  };
+    _id: mongoose.Types.ObjectId(),
+    'summary': rb.summary,
+    'location': rb.location,
+    'description': rb.description,
+    'start': rb.start,
+    'end': rb.end,
+    'recurrence': rb.recurrence,
+    'attendees': rb.attendees,
+    'reminders': rb.reminders
+ }
 
   console.log(calendarData);
   gCal(calendarData);
 
+  const event = new Event({ // parse event
+    _id: mongoose.Types.ObjectId(),
+    summary: rb.summary,
+    location: rb.location,
+    description: rb.description,
+    start: rb.start,
+    end: rb.end,
+    recurrence: rb.recurrence,
+    attendees: rb.attendees,
+    reminders: rb.reminders,
+  });
+
+  console.log("event is: " + event)
+  console.log("Attempting to store in db...")
+  return event.save() // store event in db
+
+  .then(result => {
+    console.log(result); // display stored event
+    res.status(201).json({
+      message: 'Event stored to DB.',
+      storedEvent: {
+        summary: result.summary,
+        location: result.location,
+        description: result.description,
+        start: result.start,
+        end: result.end,
+        recurrence: result.recurrence,
+        attendees: result.attendees,
+        reminders: result.reminders,
+      }
+    })
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json({
+        error: err
+    });
+  });
 });
 
 module.exports = router;
+
 
 function gCal(calendarData) {
   if (calendarData) {
@@ -51,6 +93,7 @@ function gCal(calendarData) {
       authorize(JSON.parse(content), insertEvents);
     });
 
+
     /**
      * Create an OAuth2 client with the given credentials, and then execute the
      * given callback function.
@@ -69,6 +112,7 @@ function gCal(calendarData) {
         callback(oAuth2Client);
       });
     }
+
 
     /**
      * Get and store new token after prompting for user authorization, and then
@@ -121,13 +165,13 @@ function gCal(calendarData) {
           events.map((event, i) => {
             const start = event.start.dateTime || event.start.date;
             console.log(`${start} - ${event.summary}`);
-            //console.log(document.getElementById("myEvents").value);
           });
         } else {
           console.log('No upcoming events found.');
         }
       });
     }
+
 
     function insertEvents(auth) {
 
@@ -156,7 +200,6 @@ function gCal(calendarData) {
           calendarData.reminders
         ]
       };
-
 
       calendar.events.insert({
         auth: auth,
