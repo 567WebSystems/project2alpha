@@ -18,8 +18,11 @@ router.get('/', function(req, res, next) {
 router.post("/", function(req, res){
     let rb = req.body;
 
-    startDateObj = new Date(rb.startTime + rb.startDate).toISOString();
-    endDateObj = new Date(rb.endTime + rb.endDate).toISOString();
+    startDateObj = new Date(rb.startTime + rb.startDate);
+    endDateObj = new Date(rb.endTime + rb.endDate);
+
+    // console.log(Date(startDateObj.getTimezoneOffset()));
+    // console.log(Date(endDateObj.getTimezoneOffset()));
 
     console.log("startDateObj is: " + startDateObj);
     console.log("endDateObj is: " + endDateObj);
