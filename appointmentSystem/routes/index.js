@@ -37,7 +37,7 @@ router.post("/", function(req, res){
     reminders: rb.reminders,
   });
 
-  console.log("event is: " + event)
+  //console.log("event is: " + event)
   console.log("Attempting to store in db...")
   return event.save() // store event in db
 
