@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose'); 
+const mongoose = require('mongoose');
 
 const Event = require('../models/event_model');
 var calendarData = {};
-
+var startDateObj;
+var endDateObj;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -13,65 +14,85 @@ router.get('/', function(req, res, next) {
 });
 
 router.post("/", function(req, res){
- calendarData = {
-    _id: mongoose.Types.ObjectId(),
-    'summary': req.body.summary,
-    'location': req.body.location,
-    'description': req.body.description,
-    'start': req.body.start,
-    'end': req.body.end,
-    'recurrence': req.body.recurrence,
-    'attendees': req.body.attendees,
-    'reminders': req.body.reminders
- }
+  let rb = req.body;
 
-  console.log(calendarData);
-  gCal(calendarData);
+  startDateObj = new Date(rb.startTime + rb.startDate);
+  endDateObj = new Date(rb.endTime + rb.endDate);
+
+  // console.log(Date(startDateObj.getTimezoneOffset()));
+  // console.log(Date(endDateObj.getTimezoneOffset()));
+
+  console.log("startDateObj is: " + startDateObj);
+  console.log("endDateObj is: " + endDateObj);
 
   const event = new Event({ // parse event
     _id: mongoose.Types.ObjectId(),
-    summary: req.body.summary,
-    location: req.body.location,
-    description: req.body.description,
-    start: req.body.start,
-    end: req.body.end,
-    recurrence: req.body.recurrence,
-    attendees: req.body.attendees,
-    reminders: req.body.reminders,
+    summary: rb.summary,
+    location: rb.location,
+    description: rb.description,
+    start: startDateObj,
+    end: endDateObj,
+    recurrence: rb.recurrence,
+    attendees: rb.attendees,
+    reminders: rb.reminders,
   });
 
   console.log("event is: " + event)
   console.log("Attempting to store in db...")
   return event.save() // store event in db
-  //return event.save('-__v') // store event in db
-
 
   .then(result => {
     console.log(result); // display stored event
-    res.status(201).json({ 
+    res.render('index')
+
+   // res.status(201).json({
+    var status = {
       message: 'Event stored to DB.',
-      storedEvent: { 
-        summary: result.summary,
-        location: result.location,
-        description: result.description,
-        start: result.start,
-        end: result.end,
-        recurrence: result.recurrence,
-        attendees: result.attendees,
-        reminders: result.reminders,
-      }
-    })
+      //redirect: "http://localhost:3000",
+      // storedEvent: {
+      //   summary: result.summary,
+      //   location: result.location,
+      //   description: result.description,
+      //   start: startDateObj,
+      //   end: endDateObj,
+      //   recurrence: result.recurrence,
+      //   attendees: result.attendees,
+      //   reminders: result.reminders,
+      // } 
+    }
+   // })
+
+   console.log("status: " + status.message)
+
+
+ calendarData = {
+    _id: mongoose.Types.ObjectId(),
+    'summary': rb.summary,
+    'location': rb.location,
+    'description': rb.description,
+    'start': startDateObj,
+    'end': endDateObj,
+    'recurrence': rb.recurrence,
+    'attendees': rb.attendees,
+    'reminders': rb.reminders
+ }
+
+  console.log(calendarData);
+  gCal(calendarData);
+
   })
   .catch(err => {
-    console.log(err); 
+    console.log(err);
     res.status(500).json({
         error: err
     });
   });
 
+  
 });
 
 module.exports = router;
+
 
 function gCal(calendarData) {
   if (calendarData) {
@@ -91,9 +112,12 @@ function gCal(calendarData) {
     fs.readFile('credentials.json', (err, content) => {
       if (err) return console.log('Error loading client secret file:', err);
       // Authorize a client with credentials, then call the Google Calendar API.
+      // authorize(JSON.parse(content), listAllEvents);
       authorize(JSON.parse(content), listEvents);
       authorize(JSON.parse(content), insertEvents);
+
     });
+
 
     /**
      * Create an OAuth2 client with the given credentials, and then execute the
@@ -113,6 +137,7 @@ function gCal(calendarData) {
         callback(oAuth2Client);
       });
     }
+
 
     /**
      * Get and store new token after prompting for user authorization, and then
@@ -151,6 +176,7 @@ function gCal(calendarData) {
      */
     function listEvents(auth) {
       const calendar = google.calendar({version: 'v3', auth});
+      //console.log("calendarList is: " + calendar.calendarList.list);
       calendar.events.list({
         calendarId: 'primary',
         timeMin: (new Date()).toISOString(),
@@ -182,11 +208,13 @@ function gCal(calendarData) {
         'location': calendarData.location,
         'description': calendarData.description,
         'start': {
-          'dateTime': calendarData.start + ':00-07:00',
+          //'dateTime': calendarData.start + ':00-07:00',
+          dateTime: startDateObj,
           'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone,
         },
         'end': {
-          'dateTime': calendarData.end + ':00-07:00',
+          //'dateTime': calendarData.end + ':00-07:00',
+          dateTime: endDateObj,
           'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone,
         },
         'recurrence': [
@@ -199,7 +227,6 @@ function gCal(calendarData) {
           calendarData.reminders
         ]
       };
-
 
       calendar.events.insert({
         auth: auth,
@@ -214,5 +241,19 @@ function gCal(calendarData) {
       });
 
     }
-  }
+
+    // Make sure the client is loaded and sign-in is complete before calling this method.
+  // function listAllEvents() {
+  //   return gapi.client.calendar.calendarList.list({})
+  //       .then(function(response) {
+  //               // Handle the results here (response.result has the parsed body).
+  //               console.log("Response", response);
+  //             },
+  //             function(err) { console.error("Execute error", err); });
+  // }
+  // gapi.load("client:auth2", function() {
+  //   gapi.auth2.init({client_id: "721662891407-m2p7me92ecd0ruci948val1njj4prh7n.apps.googleusercontent.com"});
+  // });
+
+   }
 }
