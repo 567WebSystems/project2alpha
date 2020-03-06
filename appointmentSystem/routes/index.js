@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 
 const Event = require('../models/event_model');
 var calendarData = {};
+var startDateObj;
+var endDateObj;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -11,15 +13,24 @@ router.get('/', function(req, res, next) {
 
 });
 
+
+
 router.post("/", function(req, res){
     let rb = req.body;
+
+    startDateObj = new Date(rb.startTime + rb.startDate).toISOString();
+    endDateObj = new Date(rb.endTime + rb.endDate).toISOString();
+
+    console.log("startDateObj is: " + startDateObj);
+    console.log("endDateObj is: " + endDateObj);
+
  calendarData = {
     _id: mongoose.Types.ObjectId(),
     'summary': rb.summary,
     'location': rb.location,
     'description': rb.description,
-    'start': rb.start,
-    'end': rb.end,
+    'start': startDateObj,
+    'end': endDateObj,
     'recurrence': rb.recurrence,
     'attendees': rb.attendees,
     'reminders': rb.reminders
@@ -33,8 +44,8 @@ router.post("/", function(req, res){
     summary: rb.summary,
     location: rb.location,
     description: rb.description,
-    start: rb.start,
-    end: rb.end,
+    start: startDateObj,
+    end: endDateObj,
     recurrence: rb.recurrence,
     attendees: rb.attendees,
     reminders: rb.reminders,
@@ -46,19 +57,23 @@ router.post("/", function(req, res){
 
   .then(result => {
     console.log(result); // display stored event
-    res.status(201).json({
-      message: 'Event stored to DB.',
-      storedEvent: {
-        summary: result.summary,
-        location: result.location,
-        description: result.description,
-        start: result.start,
-        end: result.end,
-        recurrence: result.recurrence,
-        attendees: result.attendees,
-        reminders: result.reminders,
-      }
-    })
+    res.render('index')
+
+    // res.status(201).json({
+    //   message: 'Event stored to DB.',
+    //   redirect: "http://localhost:3000",
+    //   storedEvent: {
+    //     summary: result.summary,
+    //     location: result.location,
+    //     description: result.description,
+    //     start: startDateObj,
+    //     end: endDateObj,
+    //     recurrence: result.recurrence,
+    //     attendees: result.attendees,
+    //     reminders: result.reminders,
+    //   }
+    // })
+  
   })
   .catch(err => {
     console.log(err);
@@ -172,7 +187,6 @@ function gCal(calendarData) {
       });
     }
 
-
     function insertEvents(auth) {
 
       const calendar = google.calendar({ version: 'v3', auth });
@@ -183,11 +197,13 @@ function gCal(calendarData) {
         'location': calendarData.location,
         'description': calendarData.description,
         'start': {
-          'dateTime': calendarData.start + ':00-07:00',
+          //'dateTime': calendarData.start + ':00-07:00',
+          dateTime: startDateObj,
           'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone,
         },
         'end': {
-          'dateTime': calendarData.end + ':00-07:00',
+          //'dateTime': calendarData.end + ':00-07:00',
+          dateTime: endDateObj,
           'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone,
         },
         'recurrence': [
@@ -214,5 +230,5 @@ function gCal(calendarData) {
       });
 
     }
-  }
+   }
 }

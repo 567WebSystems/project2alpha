@@ -22,8 +22,8 @@
         Summary: <input type="text" id="summary" name="summary"><br><br>
         Location: <input type="text" id=" location" name="location"><br><br>
         Description: <input type="text" id="description" name="description"><br><br>
-        Start: <input type="datetime-local" id="start" name="start"><br><br>
-        End: <input type="datetime-local" id="end" name="end"><br><br>
+        Start: <input type="date" id="startDate" name="startDate"><input type="time" id="startTime" name="startTime"><br><br>
+        End: <input type="date" id="endDate" name="endDate"><input type="time" id="endTime" name="endTime"><br><br>
         Recurrence: (#) <input type="text" id="recurrence" name="recurrence"><br><br>
         Attendee Email(s): <input type="text" id="attendees" name="attendees"><br><br>
         Reminders: <input type="text" id="reminders" name="reminders"><br><br>
@@ -38,7 +38,7 @@
     <script type="text/javascript">
 
       function onSignIn(googleUser) {
-        
+
         console.log("Welcome! You are now signed in.");
 
         // Useful data for your client-side scripts:
@@ -49,7 +49,7 @@
         console.log('Family Name: ' + profile.getFamilyName());
         console.log("Image URL: " + profile.getImageUrl());
         console.log("Email: " + profile.getEmail());
-    
+
         $("#appointmentForm").css("display", "block");
       }
 
