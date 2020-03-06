@@ -16,31 +16,16 @@ router.get('/', function(req, res, next) {
 
 
 router.post("/", function(req, res){
-    let rb = req.body;
+  let rb = req.body;
 
-    startDateObj = new Date(rb.startTime + rb.startDate);
-    endDateObj = new Date(rb.endTime + rb.endDate);
+  startDateObj = new Date(rb.startTime + rb.startDate);
+  endDateObj = new Date(rb.endTime + rb.endDate);
 
-    // console.log(Date(startDateObj.getTimezoneOffset()));
-    // console.log(Date(endDateObj.getTimezoneOffset()));
+  // console.log(Date(startDateObj.getTimezoneOffset()));
+  // console.log(Date(endDateObj.getTimezoneOffset()));
 
-    console.log("startDateObj is: " + startDateObj);
-    console.log("endDateObj is: " + endDateObj);
-
- calendarData = {
-    _id: mongoose.Types.ObjectId(),
-    'summary': rb.summary,
-    'location': rb.location,
-    'description': rb.description,
-    'start': startDateObj,
-    'end': endDateObj,
-    'recurrence': rb.recurrence,
-    'attendees': rb.attendees,
-    'reminders': rb.reminders
- }
-
-  console.log(calendarData);
-  gCal(calendarData);
+  console.log("startDateObj is: " + startDateObj);
+  console.log("endDateObj is: " + endDateObj);
 
   const event = new Event({ // parse event
     _id: mongoose.Types.ObjectId(),
@@ -64,7 +49,7 @@ router.post("/", function(req, res){
 
     // res.status(201).json({
     //   message: 'Event stored to DB.',
-    //   redirect: "http://localhost:3000",
+    //   //redirect: "http://localhost:3000",
     //   storedEvent: {
     //     summary: result.summary,
     //     location: result.location,
@@ -76,7 +61,22 @@ router.post("/", function(req, res){
     //     reminders: result.reminders,
     //   }
     // })
-  
+
+ calendarData = {
+    _id: mongoose.Types.ObjectId(),
+    'summary': rb.summary,
+    'location': rb.location,
+    'description': rb.description,
+    'start': startDateObj,
+    'end': endDateObj,
+    'recurrence': rb.recurrence,
+    'attendees': rb.attendees,
+    'reminders': rb.reminders
+ }
+
+  console.log(calendarData);
+  gCal(calendarData);
+
   })
   .catch(err => {
     console.log(err);
@@ -84,6 +84,8 @@ router.post("/", function(req, res){
         error: err
     });
   });
+
+  
 });
 
 module.exports = router;
