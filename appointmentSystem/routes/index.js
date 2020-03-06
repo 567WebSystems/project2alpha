@@ -61,7 +61,9 @@ router.post("/", function(req, res){
       // } 
     }
    // })
+
    console.log("status: " + status.message)
+
 
  calendarData = {
     _id: mongoose.Types.ObjectId(),
