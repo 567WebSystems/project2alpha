@@ -13,8 +13,6 @@ router.get('/', function(req, res, next) {
 
 });
 
-
-
 router.post("/", function(req, res){
   let rb = req.body;
 
@@ -47,20 +45,23 @@ router.post("/", function(req, res){
     console.log(result); // display stored event
     res.render('index')
 
-    // res.status(201).json({
-    //   message: 'Event stored to DB.',
-    //   //redirect: "http://localhost:3000",
-    //   storedEvent: {
-    //     summary: result.summary,
-    //     location: result.location,
-    //     description: result.description,
-    //     start: startDateObj,
-    //     end: endDateObj,
-    //     recurrence: result.recurrence,
-    //     attendees: result.attendees,
-    //     reminders: result.reminders,
-    //   }
-    // })
+   // res.status(201).json({
+    var status = {
+      message: 'Event stored to DB.',
+      //redirect: "http://localhost:3000",
+      storedEvent: {
+        summary: result.summary,
+        location: result.location,
+        description: result.description,
+        start: startDateObj,
+        end: endDateObj,
+        recurrence: result.recurrence,
+        attendees: result.attendees,
+        reminders: result.reminders,
+      } 
+    }
+   // })
+   console.log("status is: " + status)
 
  calendarData = {
     _id: mongoose.Types.ObjectId(),
