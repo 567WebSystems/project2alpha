@@ -25,7 +25,7 @@
 
       <section id="appointmentForm">
         <h1>Appointment Form</h1>
-        <form method="post" action="/profile" >
+        <form method="post" action="/appointment" >
           Summary: <input type="text" id="summary" name="summary"><br><br>
           Location: <input type="text" id=" location" name="location"><br><br>
           Description: <input type="text" id="description" name="description"><br><br>
@@ -50,35 +50,6 @@
   
       <script src="https://apis.google.com/js/api.js"></script>
       <script type="text/javascript">
-  
-        function onSignIn(googleUser) {
-  
-          //console.log("Calendar ID: " + calendarList.list())
-  
-          console.log("Welcome! You are now signed in.");
-  
-          // Useful data for your client-side scripts:
-          var profile = googleUser.getBasicProfile();
-          console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-          console.log('Full Name: ' + profile.getName());
-          console.log('Given Name: ' + profile.getGivenName());
-          console.log('Family Name: ' + profile.getFamilyName());
-          console.log("Image URL: " + profile.getImageUrl());
-          console.log("Email: " + profile.getEmail());
-  
-          $("#appointmentForm").css("display", "block");
-  
-        
-        }
-  
-        function signOut() {
-          var auth2 = gapi.auth2.getAuthInstance();
-          auth2.signOut().then(function () {
-            console.log('User signed out.');
-          });
-  
-          $("#appointmentForm").css("display", "none");
-        }
         
         // Make sure the client is loaded and sign-in is complete before calling this method.
         function deleteEvent() {
@@ -118,8 +89,6 @@
       
       </script>
   
-      <div class="g-signin2" data-onsuccess="onSignIn" ></div>
-      <a href="#" onclick="signOut();">Sign out</a>
       <button onclick="deleteEvent()">delete</button>
       <button onclick="listEvents()">list</button>
   

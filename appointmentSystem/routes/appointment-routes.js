@@ -15,7 +15,7 @@ const authCheck = (req,res, next) =>{
     }
 };
 router.get('/',authCheck,(req,res)=>{
-    res.render('profile',{user:req.user.userName});
+    res.render('appointment',{user:req.user.userName});
 });
 
 router.post("/", function(req, res){
@@ -48,7 +48,7 @@ router.post("/", function(req, res){
   
     .then(result => {
       console.log(result); // display stored event
-      res.render('profile')
+      res.render('appointment')
   
      // res.status(201).json({
       var status = {
