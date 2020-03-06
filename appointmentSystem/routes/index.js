@@ -49,19 +49,21 @@ router.post("/", function(req, res){
     var status = {
       message: 'Event stored to DB.',
       //redirect: "http://localhost:3000",
-      storedEvent: {
-        summary: result.summary,
-        location: result.location,
-        description: result.description,
-        start: startDateObj,
-        end: endDateObj,
-        recurrence: result.recurrence,
-        attendees: result.attendees,
-        reminders: result.reminders,
-      } 
+      // storedEvent: {
+      //   summary: result.summary,
+      //   location: result.location,
+      //   description: result.description,
+      //   start: startDateObj,
+      //   end: endDateObj,
+      //   recurrence: result.recurrence,
+      //   attendees: result.attendees,
+      //   reminders: result.reminders,
+      // } 
     }
    // })
-   console.log(status);
+
+   console.log("status: " + status.message)
+
 
  calendarData = {
     _id: mongoose.Types.ObjectId(),
@@ -110,8 +112,10 @@ function gCal(calendarData) {
     fs.readFile('credentials.json', (err, content) => {
       if (err) return console.log('Error loading client secret file:', err);
       // Authorize a client with credentials, then call the Google Calendar API.
+      // authorize(JSON.parse(content), listAllEvents);
       authorize(JSON.parse(content), listEvents);
       authorize(JSON.parse(content), insertEvents);
+
     });
 
 
@@ -172,6 +176,7 @@ function gCal(calendarData) {
      */
     function listEvents(auth) {
       const calendar = google.calendar({version: 'v3', auth});
+      //console.log("calendarList is: " + calendar.calendarList.list);
       calendar.events.list({
         calendarId: 'primary',
         timeMin: (new Date()).toISOString(),
@@ -236,5 +241,19 @@ function gCal(calendarData) {
       });
 
     }
+
+    // Make sure the client is loaded and sign-in is complete before calling this method.
+  // function listAllEvents() {
+  //   return gapi.client.calendar.calendarList.list({})
+  //       .then(function(response) {
+  //               // Handle the results here (response.result has the parsed body).
+  //               console.log("Response", response);
+  //             },
+  //             function(err) { console.error("Execute error", err); });
+  // }
+  // gapi.load("client:auth2", function() {
+  //   gapi.auth2.init({client_id: "721662891407-m2p7me92ecd0ruci948val1njj4prh7n.apps.googleusercontent.com"});
+  // });
+
    }
 }
