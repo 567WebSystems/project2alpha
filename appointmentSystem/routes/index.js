@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+
 const mongoose = require('mongoose');
 const script = require('../public/javascripts/script');
 
@@ -8,6 +9,12 @@ const Event = require('../models/event_model');
 var calendarData = {};
 var startDateObj;
 var endDateObj;
+
+/* GET home page. */
+router.get('/', function(req, res, next) {
+  res.render('index')
+
+});
 
 //var exportData;
 const x1 = 5;
@@ -22,11 +29,6 @@ const hello = HelloWorld();
 
 
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-    res.render('index')
-
-});
 
 router.post("/", function(req, res){
   let rb = req.body;
@@ -128,4 +130,4 @@ var calData = exportCalData(calendarData);
 const exportData = exportDataFunct();
 
 
-module.exports = {router, script};
+module.exports = router;
