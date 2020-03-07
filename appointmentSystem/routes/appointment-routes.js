@@ -1,11 +1,16 @@
 const router = require('express').Router();
 const mongoose = require('mongoose');
-const functions = require('../controllers/functions');
-
+const gCalendar = require('../controllers/gCalendar');
+//import * as say from '../controllers/gCalendar';
 const Event = require('../models/event_model');
 var calendarData = {};
-var startDateObj;
-var endDateObj;
+var startDateObj = "text";
+var endDateObj = "text";
+
+// functions.HelloWorld;
+// x = functions.HelloWorld;
+// console.log(x)
+// console.log("HelloWorld is: ", typeof(HelloWorld));
 
 const authCheck = (req,res, next) =>{
     if(!req.user){
@@ -23,9 +28,15 @@ router.get('/',authCheck,(req,res)=>{
 router.post("/", function(req, res){
     let rb = req.body;
   
-    startDateObj = new Date(rb.startTime +" "+ rb.startDate);
-    endDateObj = new Date(rb.endTime +" "+ rb.endDate);
+    // startDateObj = '2020-05-28T09:00:00-07:00';
+    // endDateObj =  '2020-05-28T09:00:00-07:00';
   
+    startDateObj = new Date(rb.startDate + " " + rb.startTime);
+    endDateObj = new Date(rb.endDate + " " + rb.endTime);
+  
+    //console.log(new Date(startDateObj).toISOString);
+    //console.log(new Date(endDateObj).toISOString);
+
     // console.log(Date(startDateObj.getTimezoneOffset()));
     // console.log(Date(endDateObj.getTimezoneOffset()));
   
@@ -84,9 +95,10 @@ router.post("/", function(req, res){
       'reminders': rb.reminders
    }
   
-    console.log(calendarData);
-    functions.gCal(calendarData);
-  
+    console.log("calendarData is: ", calendarData);
+    gCalendar(calendarData);
+    //functions.googleCal;
+    
     })
     .catch(err => {
       console.log(err);
@@ -98,4 +110,23 @@ router.post("/", function(req, res){
     
   });
 
-module.exports = router;
+//module.exports.router;
+
+function showStartObj() {
+  return startDateObj;
+};
+
+function showEndObj() {
+  return endDateObj;
+};
+
+x = showStartObj();
+y = showEndObj();
+// console.log("X is: ", x)
+// console.log("Y is: ", y)
+
+
+module.exports = router, {
+  showStartObj: function() { return startDateObj }, 
+  showEndObj: function() { return endDateObj }
+};
