@@ -1,6 +1,7 @@
 const appRoutes = require('../routes/appointment-routes');
-
-function gCal(calendarData) {
+var startDateObj = appRoutes.startDateObj;
+var endDateObj = appRoutes.endDateObj;
+module.exports = { gcal : function gCal(calendarData) {
     if (calendarData) {
       const fs = require('fs');
       const readline = require('readline');
@@ -148,3 +149,5 @@ function gCal(calendarData) {
 
      }
   }
+}
+  

@@ -23,8 +23,8 @@ router.get('/',authCheck,(req,res)=>{
 router.post("/", function(req, res){
     let rb = req.body;
   
-    startDateObj = new Date(rb.startTime +" "+ rb.startDate);
-    endDateObj = new Date(rb.endTime +" "+ rb.endDate);
+    startDateObj = new Date(rb.startTime + rb.startDate);
+    endDateObj = new Date(rb.endTime + rb.endDate);
   
     // console.log(Date(startDateObj.getTimezoneOffset()));
     // console.log(Date(endDateObj.getTimezoneOffset()));
@@ -85,7 +85,7 @@ router.post("/", function(req, res){
    }
   
     console.log(calendarData);
-    functions.gCal(calendarData);
+    functions.gcal(calendarData);
   
     })
     .catch(err => {
