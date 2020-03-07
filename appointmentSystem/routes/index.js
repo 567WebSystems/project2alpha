@@ -3,18 +3,19 @@ const router = express.Router();
 const mongoose = require('mongoose');
 
 const Event = require('../models/event_model');
-const Script = require('../public/javascripts/script')
+const script = require('../public/javascripts/script')
+
 
 var startDateObj;
 var endDateObj;
 var exportData;
-const x1 = 5;
-
-module.exports = x1;
+var x1 = 5;
 
 function HelloWorld() {
-     console.log("Hello World!"); 
+    console.log("Hello World!"); 
 }
+
+const hello = HelloWorld();
 
 
 /* GET home page. */
@@ -103,4 +104,4 @@ router.post("/", function(req, res){
   
 });
 
-module.exports = router;
+module.exports = {router, script, hello, x1};

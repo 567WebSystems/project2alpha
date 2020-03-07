@@ -1,4 +1,4 @@
-//const index = require("../../routes/index");
+const index = require("../../routes/index");
 //import { HelloWorld } from "../../routes/index";
 //const jQuery = require("https://code.jquery.com/jquery-3.4.1.min.js");
 
@@ -7,9 +7,10 @@
 
 //import '../../routes/index';
 
-//HelloWorld();
+index.hello;
 
-//console.log("x1 is: ", index.x1)
+console.log("hello is: " + exports.index.hello);
+console.log("x1 is: " + exports.index.x1);
 
 
 //$(document).ready( function () {
