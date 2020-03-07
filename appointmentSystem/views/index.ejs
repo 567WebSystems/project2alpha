@@ -51,56 +51,7 @@
 
     <script src="https://apis.google.com/js/api.js"></script>
     <!-- <script src="./routes/index.js"></script> -->
-
-    <script type="text/javascript">
-
-      //const {google} = require('googleapis');
-
-      //const calendar = google.calendar({version: 'v3', auth});
-
-      function onSignIn(googleUser) {
-
-        //console.log("Calendar ID: " + calendarList.list())
-
-        console.log("Welcome! You are now signed in.");
-
-        // Useful data for your client-side scripts:
-        var profile = googleUser.getBasicProfile();
-        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-        console.log('Full Name: ' + profile.getName());
-        console.log('Given Name: ' + profile.getGivenName());
-        console.log('Family Name: ' + profile.getFamilyName());
-        console.log("Image URL: " + profile.getImageUrl());
-        console.log("Email: " + profile.getEmail());
-
-        $("#appointmentForm").css("display", "block");
-
-      
-      }
-
-      function signOut() {
-        var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(function () {
-          console.log('User signed out.');
-        });
-
-        $("#appointmentForm").css("display", "none");
-      }
-
-      // Make sure the client is loaded and sign-in is complete before calling this method.
-    /* function execute() {
-       return gapi.client.calendar.events.delete({})
-           .then(function(response) {
-                   // Handle the results here (response.result has the parsed body).
-                   console.log("Response", response);
-                 },
-                 function(err) { console.error("Execute error", err); });
-     } */
-     gapi.load("client:auth2", function() {
-       gapi.auth2.init({client_id: "721662891407-m2p7me92ecd0ruci948val1njj4prh7n.apps.googleusercontent.com"});
-     });
-
-    </script>
+    <script type="text/javascript" src="/javascripts/index.js"></script>
 
     <div class="g-signin2" data-onsuccess="onSignIn" ></div>
     <a href="#" onclick="signOut()">Sign out</a>
