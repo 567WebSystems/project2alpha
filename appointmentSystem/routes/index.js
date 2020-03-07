@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const script = require('../public/javascripts/script');
+const functions = require('../controller/functions');
 
 const Event = require('../models/event_model');
 var calendarData = {};
@@ -10,8 +10,7 @@ var endDateObj;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('index')
-
+    res.render('index');
 });
 
 router.post("/", function(req, res){
@@ -44,7 +43,7 @@ router.post("/", function(req, res){
 
   .then(result => {
     console.log(result); // display stored event
-    res.render('index')
+    res.render('index');
 
    // res.status(201).json({
     var status = {
@@ -64,7 +63,7 @@ router.post("/", function(req, res){
    // })
    console.log(status);
 
- calendarData = {
+  calendarData = {
     _id: mongoose.Types.ObjectId(),
     'summary': rb.summary,
     'location': rb.location,
@@ -74,10 +73,10 @@ router.post("/", function(req, res){
     'recurrence': rb.recurrence,
     'attendees': rb.attendees,
     'reminders': rb.reminders
- }
+  }
 
   console.log(calendarData);
-  gCal(calendarData);
+  functions.gCal(calendarData);
 
   })
   .catch(err => {
@@ -86,8 +85,6 @@ router.post("/", function(req, res){
         error: err
     });
   });
-
-  
 });
 
-module.exports = {router, script};
+module.exports = {router, functions};
