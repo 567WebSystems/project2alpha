@@ -1,5 +1,15 @@
 const appRoutes = require('../routes/appointment-routes');
 
+// var i = 5;
+
+// function HelloWorld(i) {
+//   console.log("Hello World");
+//   console.log(i);
+//   return i;
+// }
+
+// const hello = HelloWorld();
+
 function gCal(calendarData) {
     if (calendarData) {
       const fs = require('fs');
@@ -113,12 +123,12 @@ function gCal(calendarData) {
           'description': calendarData.description,
           'start': {
             //'dateTime': calendarData.start + ':00-07:00',
-            dateTime: startDateObj,
+            'dateTime': new Date(appRoutes.startDateObj),
             'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone,
           },
           'end': {
             //'dateTime': calendarData.end + ':00-07:00',
-            dateTime: endDateObj,
+            'dateTime': new Date(appRoutes.endDateObj),
             'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone,
           },
           'recurrence': [
@@ -139,6 +149,9 @@ function gCal(calendarData) {
         }, function(err, event) {
           if (err) {
             console.log('There was an error contacting the Calendar service: ' + err);
+            console.log("start date: " + Date(appRoutes.startDateObj));
+            console.log("end date: " + Date(appRoutes.endDateObj));
+
             return;
           }
           console.log('Event created: %s', calendarData.summary);
@@ -148,3 +161,8 @@ function gCal(calendarData) {
 
      }
   }
+
+  //const googleCal = gCal();
+
+  //console.log("type of gCal is: ", typeof(gCal));
+  module.exports = gCal;
