@@ -1,13 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const script = require('../public/javascripts/script');
 
 const Event = require('../models/event_model');
+
 const script = require('../public/javascripts/script')
 
-
+var calendarData = {};
 var startDateObj;
 var endDateObj;
+
 var exportData;
 var x1 = 5;
 
@@ -16,6 +19,7 @@ function HelloWorld() {
 }
 
 const hello = HelloWorld();
+
 
 
 /* GET home page. */
@@ -48,9 +52,7 @@ router.post("/", function(req, res){
     reminders: rb.reminders,
   });
 
-  exportData = event;
-  
-  //console.log("event is: " + event)
+  console.log("event is: " + event)
   console.log("Attempting to store in db...")
   return event.save() // store event in db
 
@@ -62,36 +64,34 @@ router.post("/", function(req, res){
     var status = {
       message: 'Event stored to DB.',
       //redirect: "http://localhost:3000",
-      // storedEvent: {
-      //   summary: result.summary,
-      //   location: result.location,
-      //   description: result.description,
-      //   start: startDateObj,
-      //   end: endDateObj,
-      //   recurrence: result.recurrence,
-      //   attendees: result.attendees,
-      //   reminders: result.reminders,
-      // } 
+      storedEvent: {
+        summary: result.summary,
+        location: result.location,
+        description: result.description,
+        start: startDateObj,
+        end: endDateObj,
+        recurrence: result.recurrence,
+        attendees: result.attendees,
+        reminders: result.reminders,
+      } 
     }
    // })
+   console.log(status);
 
-   console.log("status: " + status.message)
+ calendarData = {
+    _id: mongoose.Types.ObjectId(),
+    'summary': rb.summary,
+    'location': rb.location,
+    'description': rb.description,
+    'start': startDateObj,
+    'end': endDateObj,
+    'recurrence': rb.recurrence,
+    'attendees': rb.attendees,
+    'reminders': rb.reminders
+ }
 
-
-//  calendarData = {
-//     _id: mongoose.Types.ObjectId(),
-//     'summary': rb.summary,
-//     'location': rb.location,
-//     'description': rb.description,
-//     'start': startDateObj,
-//     'end': endDateObj,
-//     'recurrence': rb.recurrence,
-//     'attendees': rb.attendees,
-//     'reminders': rb.reminders
-//  }
-
-  // console.log(calendarData);
-  // gCal(calendarData);
+  console.log(calendarData);
+  gCal(calendarData);
 
   })
   .catch(err => {
@@ -104,4 +104,6 @@ router.post("/", function(req, res){
   
 });
 
-module.exports = {router, script, hello, x1};
+
+module.exports = {router, script};
+
