@@ -1,6 +1,7 @@
 const appRoutes = require('../routes/appointment-routes');
 var startDateObj = appRoutes.startDateObj;
 var endDateObj = appRoutes.endDateObj;
+var calendarData;
 module.exports = { gcal : function gCal(calendarData) {
     if (calendarData) {
       const fs = require('fs');
@@ -114,12 +115,12 @@ module.exports = { gcal : function gCal(calendarData) {
           'description': calendarData.description,
           'start': {
             //'dateTime': calendarData.start + ':00-07:00',
-            dateTime: startDateObj,
+            dateTime: calendarData.start,
             'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone,
           },
           'end': {
             //'dateTime': calendarData.end + ':00-07:00',
-            dateTime: endDateObj,
+            dateTime: calendarData.end,
             'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone,
           },
           'recurrence': [

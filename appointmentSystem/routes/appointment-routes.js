@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const mongoose = require('mongoose');
-const functions = require('../controllers/functions');
+const gcalFunction = require('../controllers/gCalendar');
 
 const Event = require('../models/event_model');
 var calendarData = {};
@@ -85,8 +85,7 @@ router.post("/", function(req, res){
    }
   
     console.log(calendarData);
-    functions.gcal(calendarData);
-  
+    gcalFunction.gcal(calendarData);
     })
     .catch(err => {
       console.log(err);
