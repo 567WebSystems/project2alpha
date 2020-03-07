@@ -1,16 +1,13 @@
 const router = require('express').Router();
 const mongoose = require('mongoose');
+
 const gCalendar = require('../controllers/gCalendar');
-//import * as say from '../controllers/gCalendar';
 const Event = require('../models/event_model');
+
 var calendarData = {};
 var startDateObj = "text";
 var endDateObj = "text";
 
-// functions.HelloWorld;
-// x = functions.HelloWorld;
-// console.log(x)
-// console.log("HelloWorld is: ", typeof(HelloWorld));
 
 const authCheck = (req,res, next) =>{
     if(!req.user){
@@ -23,22 +20,21 @@ const authCheck = (req,res, next) =>{
 
 router.get('/',authCheck,(req,res)=>{
     res.render('appointment',{user:req.user.userName});
+
+    // return gapi.client.calendar.calendarList.list({})
+    //   .then(function(response) {
+    //           // Handle the results here (response.result has the parsed body).
+    //           console.log("Response", response);
+    //         },
+    //         function(err) { console.error("Execute error", err); });
 });
 
 router.post("/", function(req, res){
     let rb = req.body;
   
-    // startDateObj = '2020-05-28T09:00:00-07:00';
-    // endDateObj =  '2020-05-28T09:00:00-07:00';
-  
     startDateObj = new Date(rb.startDate + " " + rb.startTime);
     endDateObj = new Date(rb.endDate + " " + rb.endTime);
-  
-    //console.log(new Date(startDateObj).toISOString);
-    //console.log(new Date(endDateObj).toISOString);
 
-    // console.log(Date(startDateObj.getTimezoneOffset()));
-    // console.log(Date(endDateObj.getTimezoneOffset()));
   
     console.log("startDateObj is: " + startDateObj);
     console.log("endDateObj is: " + endDateObj);
@@ -63,25 +59,11 @@ router.post("/", function(req, res){
       console.log(result); // display stored event
       res.render('appointment')
   
-     // res.status(201).json({
       var status = {
         message: 'Event stored to DB.',
-        //redirect: "http://localhost:3000",
-        // storedEvent: {
-        //   summary: result.summary,
-        //   location: result.location,
-        //   description: result.description,
-        //   start: startDateObj,
-        //   end: endDateObj,
-        //   recurrence: result.recurrence,
-        //   attendees: result.attendees,
-        //   reminders: result.reminders,
-        // } 
       }
-     // })
   
      console.log("status: " + status.message)
-  
   
    calendarData = {
       _id: mongoose.Types.ObjectId(),
@@ -110,23 +92,13 @@ router.post("/", function(req, res){
     
   });
 
-//module.exports.router;
+router.delete('/',authCheck,(req,res)=>{
+  return gapi.client.calendar.calendarList.delete({})
+  .then(function(response) {
+          // Handle the results here (response.result has the parsed body).
+          console.log("Response", response);
+      },
+      function(err) { console.error("Execute error", err); });
+});
 
-function showStartObj() {
-  return startDateObj;
-};
-
-function showEndObj() {
-  return endDateObj;
-};
-
-x = showStartObj();
-y = showEndObj();
-// console.log("X is: ", x)
-// console.log("Y is: ", y)
-
-
-module.exports = router, {
-  showStartObj: function() { return startDateObj }, 
-  showEndObj: function() { return endDateObj }
-};
+module.exports = router;
