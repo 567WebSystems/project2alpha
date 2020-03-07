@@ -49,9 +49,13 @@
     </section>
 
     <script src="https://apis.google.com/js/api.js"></script>
-    <script src="../routes/index.js" type="text/javascript"></script>
+    <!-- <script src="./routes/index.js"></script> -->
 
     <script type="text/javascript">
+
+      //const {google} = require('googleapis');
+
+      //const calendar = google.calendar({version: 'v3', auth});
 
       function onSignIn(googleUser) {
 
@@ -99,8 +103,16 @@
 
     <div class="g-signin2" data-onsuccess="onSignIn" ></div>
     <a href="#" onclick="signOut()">Sign out</a>
-    <button onclick="javascript: deleteEvent()">delete</button>
-    <button onclick="javascript: listAllEvents()">list</button>
+
+    <!-- <button onclick="deleteEvent()">delete</button> -->
+    <!-- <button onclick="listAllEvents()">list</button> -->
+   
+    <form method="get" action="/" >
+      <button>list</button>
+    </form>
+    <form method="delete" action="/" >
+      <button>delete</button>
+    </form>
 
   </body>
 </html>
