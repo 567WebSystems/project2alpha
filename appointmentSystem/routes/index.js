@@ -5,17 +5,17 @@ const script = require('../public/javascripts/script');
 
 const Event = require('../models/event_model');
 
-const script = require('../public/javascripts/script')
-
 var calendarData = {};
 var startDateObj;
 var endDateObj;
 
-var exportData;
-var x1 = 5;
+//var exportData;
+const x1 = 5;
 
 function HelloWorld() {
-    console.log("Hello World!"); 
+  console.log("Hello World!"); 
+  //console.log(num);
+  //return num;
 }
 
 const hello = HelloWorld();
@@ -90,8 +90,8 @@ router.post("/", function(req, res){
     'reminders': rb.reminders
  }
 
-  console.log(calendarData);
-  gCal(calendarData);
+  //console.log(calendarData);
+  //gCal(calendarData);
 
   })
   .catch(err => {
@@ -104,6 +104,28 @@ router.post("/", function(req, res){
   
 });
 
+calendarData = {
+  "summary": "event2",
+  "desc": "desc",
+  "loc": "loc"
+}
+exportDataFunct(x1);
+
+function exportDataFunct(event) {
+  x = event;
+  console.log(event);
+  return x;
+}
+
+function exportCalData(cd) {
+  cd = calendarData;
+  console.log(cd);
+}
+
+
+var calData = exportCalData(calendarData);
+
+const exportData = exportDataFunct();
+
 
 module.exports = {router, script};
-

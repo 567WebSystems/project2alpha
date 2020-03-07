@@ -7,11 +7,13 @@ const index = require("../../routes/index");
 
 //import '../../routes/index';
 
-index.hello;
+//index.HelloWorld;
+//index.calData;
 
-console.log("hello is: " + exports.index.hello);
-console.log("x1 is: " + exports.index.x1);
-
+//index.exportData;
+//console.log(index.x1);
+//console.log("hello is: " + index.hello);
+//console.log("x1 is: " + index.x1);
 
 //$(document).ready( function () {
 //index.use.function.HelloWorld;
