@@ -12,17 +12,15 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+    <link rel="stylesheet" type="text/css" href="../stylesheets/style.css" />
+    <link rel="stylesheet" type="text/css" href="../stylesheets/hidden.css" />
     <title>User_Form</title>
   </head>
   <body>
     <nav>
-      <ul>
-          <li><a href="/auth/login">Login</a></li>
-          <li><a href="/auth/logout">Logout</a></li>
-          <li><a href="/">HomePage</a></li>
-      </ul>
+      <a href="/auth/google">Login with Google</a>
     </nav>
+
     <section id="appointmentForm">
       <h1>Appointment Form</h1>
       <form method="post" action="/" >
@@ -44,26 +42,57 @@
       Event ID: <input type="text" id="eventID" name="eventID"/><button type="delete" onClick="execute()">Delete</button>
     </section> -->
 
-    <section class="eventList">
-      <p id="myEvents"></p>
-    </section>
 
     <script src="https://apis.google.com/js/api.js"></script>
     <!-- <script src="./routes/index.js"></script> -->
+<<<<<<< HEAD
     <script type="text/javascript" src="/javascripts/script.js"></script>
+=======
+>>>>>>> 44b680116b219700100495e3ee484d726a348964
 
     <div class="g-signin2" data-onsuccess="onSignIn" ></div>
     <a href="#" onclick="signOut()">Sign out</a>
 
+    <script>
+      
+      function onSignIn(googleUser) {
+      var profile = googleUser.getBasicProfile();
+      console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+      console.log('Name: ' + profile.getName());
+      console.log('Image URL: ' + profile.getImageUrl());
+      console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+
+      $("#appointmentForm").css("display", "block");
+      $("#eventButtons").css("display", "block");
+    }
+
+    function signOut() {
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+        console.log('User signed out.');
+      });
+
+      $("#appointmentForm").css("display", "none");
+      $("#eventButtons").css("display", "none");
+    }
+  
+  </script>
     <!-- <button onclick="deleteEvent()">delete</button> -->
     <!-- <button onclick="listAllEvents()">list</button> -->
    
-    <form method="get" action="/" >
+    <!-- <form method="get" action="/" >
       <button>list</button>
     </form>
     <form method="delete" action="/" >
       <button>delete</button>
-    </form>
+    </form> -->
+
+    <section id="eventButtons">
+      <p id="myEvents"></p>
+      <button onclick="viewEvents()">View Events</button>
+      <button onclick="deleteEvent()">Delete</button>
+    </section>
 
   </body>
-</html>
+  </html>
+  
