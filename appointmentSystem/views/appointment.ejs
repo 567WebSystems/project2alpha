@@ -15,6 +15,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" type="text/css" href="../stylesheets/style.css" />
+    <link rel="stylesheet" type="text/css" href="../stylesheets/hidden.css" />
+
     <title>User_Form</title>
   </head>
   <body>
@@ -38,6 +40,7 @@
           Reminders: <input type="text" id="reminders" name="reminders"><br><br>
           <button type="submit">Submit</button>
         </form>
+
       </section>
   
      <!-- <br><br>
@@ -46,11 +49,21 @@
         Event ID: <input type="text" id="eventID" name="eventID"/><button type="delete" onClick="execute()">Delete</button>
       </section> -->
   
-      <section class="eventList">
+      <section id="eventButtons">
         <p id="myEvents"></p>
+          <button onclick="viewEvents()">View Events</button>
+          <button onclick="deleteEvent()">Delete</button>
       </section>
+    
 
+<!-- <script src="../controllers/gCalendar.js"></script> -->
 <script>
+  
+  $("#appointmentForm").css("display", "block");
+  $("#eventButtons").css("display", "block");
+  //const {google} = require('googleapis');
+  //const calendar = google.calendar({version: 'v3', auth});
+
   /**
    * Sample JavaScript code for calendar.calendarList.list
    * See instructions for running APIs Explorer code samples locally:
@@ -79,9 +92,8 @@
   gapi.load("client:auth2", function() {
     gapi.auth2.init({client_id: "1012259665491-h9mjitf64jabj5b5fm03umu5c6a84t9o.apps.googleusercontent.com"});
   });
+
 </script>
-<button onclick="viewEvents()">View Events</button>
-<button onclick="deleteEvent()">Delete</button>
 
 
     
