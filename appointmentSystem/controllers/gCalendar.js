@@ -1,17 +1,4 @@
 const appRoutes = require('../routes/appointment-routes');
-// var x, y;
-// console.log("appRoutes.startDateObj is: " + Date(x))
-// console.log("appRoutes.endDateObj is: " + Date(y))
-
-// var i = 5;
-
-// function HelloWorld(i) {
-//   console.log("Hello World");
-//   console.log(i);
-//   return i;
-// }
-
-// const hello = HelloWorld();
 
 function gCal(calendarData) {
     if (calendarData) {
@@ -125,12 +112,10 @@ function gCal(calendarData) {
           'location': calendarData.location,
           'description': calendarData.description,
           'start': {
-            //'dateTime': calendarData.start + ':00-07:00',
             'dateTime': calendarData.start,
             'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone,
           },
           'end': {
-            //'dateTime': calendarData.end + ':00-07:00',
             'dateTime': calendarData.end,
             'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone,
           },
@@ -165,7 +150,4 @@ function gCal(calendarData) {
      }
   }
 
-  //const googleCal = gCal();
-
-  //console.log("type of gCal is: ", typeof(gCal));
   module.exports = gCal;
