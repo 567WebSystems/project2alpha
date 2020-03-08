@@ -13,3 +13,5 @@ function deleteEvent() {
 gapi.load("client:auth2", function() {
   gapi.auth2.init({client_id: "1012259665491-h9mjitf64jabj5b5fm03umu5c6a84t9o.apps.googleusercontent.com"});
 });
+
+module.exports = deleteEvent;

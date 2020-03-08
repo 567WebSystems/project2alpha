@@ -2,6 +2,8 @@ const router = require('express').Router();
 const mongoose = require('mongoose');
 
 const gCalendar = require('../controllers/gCalendar');
+const deleteEvent = require('../controllers/delete')
+const listAll = require('../controllers/listAll')
 const Event = require('../models/event_model');
 
 var calendarData = {};
