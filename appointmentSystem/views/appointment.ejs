@@ -49,15 +49,40 @@
       <section class="eventList">
         <p id="myEvents"></p>
       </section>
-  
-      <!-- <button onclick="deleteEvent()">delete</button>
-      <button onclick="listAllEvents()">list</button> -->
 
-      <form method="get" action="/" >
-        <button>list</button>
-      </form>
-      <form method="delete" action="/" >
-        <button>delete</button>
-      </form>
-  
+<script>
+  /**
+   * Sample JavaScript code for calendar.calendarList.list
+   * See instructions for running APIs Explorer code samples locally:
+   * https://developers.google.com/explorer-help/guides/code_samples#javascript
+   */
+
+  // Make sure the client is loaded and sign-in is complete before calling this method.
+  function viewEvents() {
+    return gapi.client.calendar.calendarList.list({})
+        .then(function(response) {
+                // Handle the results here (response.result has the parsed body).
+                console.log("Response", response);
+              },
+              function(err) { console.error("Execute error", err); });
+  }
+
+  function deleteEvent() {
+    return gapi.client.calendar.calendarList.delete({})
+        .then(function(response) {
+                // Handle the results here (response.result has the parsed body).
+                console.log("Response", response);
+              },
+              function(err) { console.error("Execute error", err); });
+  }
+
+  gapi.load("client:auth2", function() {
+    gapi.auth2.init({client_id: "1012259665491-h9mjitf64jabj5b5fm03umu5c6a84t9o.apps.googleusercontent.com"});
+  });
+</script>
+<button onclick="viewEvents()">View Events</button>
+<button onclick="deleteEvent()">Delete</button>
+
+
+    
   </body>
