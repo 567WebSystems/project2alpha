@@ -1,5 +1,3 @@
-const appRoutes = require('../routes/appointment-routes');
-
 function gCal(calendarData) {
     if (calendarData) {
       const fs = require('fs');
