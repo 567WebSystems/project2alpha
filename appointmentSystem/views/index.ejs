@@ -62,6 +62,34 @@
       $("#eventButtons").css("display", "block");
     }
 
+     /**
+      * Sample JavaScript code for calendar.calendarList.list
+      * See instructions for running APIs Explorer code samples locally:
+      * https://developers.google.com/explorer-help/guides/code_samples#javascript
+      */
+
+  // Make sure the client is loaded and sign-in is complete before calling this method.
+  function viewEvents() {
+    console.log("gapi.client.calendar: ", gapi.client.calendar)
+    return gapi.client.calendar;
+
+    /*return gapi.client.calendar.calendarList.list({})
+        .then(function(response) {
+                // Handle the results here (response.result has the parsed body).
+                console.log("Response", response);
+              },
+              function(err) { console.error("Execute error", err); });*/
+  }
+
+  function deleteEvent() {
+    return gapi.client.calendar.calendarList.delete({})
+        .then(function(response) {
+                // Handle the results here (response.result has the parsed body).
+                console.log("Response", response);
+              },
+              function(err) { console.error("Execute error", err); });
+  }
+
     function signOut() {
       var auth2 = gapi.auth2.getAuthInstance();
       auth2.signOut().then(function () {
