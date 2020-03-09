@@ -43,20 +43,14 @@
 
       </section>
   
-     <!-- <br><br>
-      <section id="delete">
-        Calendar ID: <input type="text" id="calendarID" name="calendarID"><br><br>
-        Event ID: <input type="text" id="eventID" name="eventID"/><button type="delete" onClick="execute()">Delete</button>
-      </section> -->
-  
       <section id="eventButtons">
         <p id="myEvents"></p>
-          <button onclick="viewEvents()">View Events</button>
+          <button onclick="listEvents()">View Events</button>
           <button onclick="deleteEvent()">Delete</button>
       </section>
-    
 
-<!-- <script src="../controllers/gCalendar.js"></script> -->
+      <script type="text/javascript" src="/controllers/listevents.js"></script>
+    
 <script>
   
   $("#appointmentForm").css("display", "block");
@@ -73,8 +67,8 @@
   // Make sure the client is loaded and sign-in is complete before calling this method.
   function viewEvents() {
     console.log("gapi.client.calendar: ", gapi.client.calendar)
-    return gapi.client.calendar;
-
+    const calendar = google.calendar({version: 'v3', auth});
+    calendar.events.list({});
     /*return gapi.client.calendar.calendarList.list({})
         .then(function(response) {
                 // Handle the results here (response.result has the parsed body).
