@@ -1,13 +1,5 @@
-<<<<<<< HEAD:appointmentSystem/controllers/gCalendar.js
 function gcalendar(calendarData) {
 
-=======
-const appRoutes = require('../routes/appointment-routes');
-var startDateObj = appRoutes.startDateObj;
-var endDateObj = appRoutes.endDateObj;
-var calendarData;
-module.exports = { gcal : function gCal(calendarData) {
->>>>>>> 99d7bf617e57f80ea4ad6384f87f425572e736c3:appointmentSystem/controllers/gCalendar.js
     if (calendarData) {
       const fs = require('fs');
       const readline = require('readline');
@@ -109,59 +101,8 @@ module.exports = { gcal : function gCal(calendarData) {
         });
       }
   
-<<<<<<< HEAD:appointmentSystem/controllers/gCalendar.js
 
      }
   }
 
-  module.exports = gCal;
-=======
-      function insertEvents(auth) {
-  
-        const calendar = google.calendar({ version: 'v3', auth });
-  
-        //console.log(calendarData);
-        var event = {
-          'summary': calendarData.summary,
-          'location': calendarData.location,
-          'description': calendarData.description,
-          'start': {
-            //'dateTime': calendarData.start + ':00-07:00',
-            dateTime: calendarData.start,
-            'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone,
-          },
-          'end': {
-            //'dateTime': calendarData.end + ':00-07:00',
-            dateTime: calendarData.end,
-            'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone,
-          },
-          'recurrence': [
-            'RRULE:FREQ=DAILY;COUNT='+calendarData.recurrence,
-          ],
-          'attendees': [
-            calendarData.attendees
-          ],
-          'reminders': [
-            calendarData.reminders
-          ]
-        };
-  
-        calendar.events.insert({
-          auth: auth,
-          calendarId: 'primary',
-          resource: event,
-        }, function(err, event) {
-          if (err) {
-            console.log('There was an error contacting the Calendar service: ' + err);
-            return;
-          }
-          console.log('Event created: %s', calendarData.summary);
-        });
-  
-      }
-
-     }
-  }
-}
-  
->>>>>>> 99d7bf617e57f80ea4ad6384f87f425572e736c3:appointmentSystem/controllers/gCalendar.js
+  module.exports = gcalendar;

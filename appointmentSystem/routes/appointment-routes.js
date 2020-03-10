@@ -1,11 +1,7 @@
 const router = require('express').Router();
 const mongoose = require('mongoose');
-<<<<<<< HEAD
-=======
-const gcalFunction = require('../controllers/gCalendar');
->>>>>>> 99d7bf617e57f80ea4ad6384f87f425572e736c3
 
-const gCalendar = require('../controllers/gcalendar');
+const gcalendar = require('../controllers/gcalendar');
 const Event = require('../models/event_model');
 
 var calendarData = {};
@@ -36,17 +32,9 @@ router.get('/',authCheck,(req,res)=>{
 router.post("/", function(req, res){
     let rb = req.body;
   
-<<<<<<< HEAD
     startDateObj = new Date(rb.startDate + " " + rb.startTime);
     endDateObj = new Date(rb.endDate + " " + rb.endTime);
 
-=======
-    startDateObj = new Date(rb.startTime + rb.startDate);
-    endDateObj = new Date(rb.endTime + rb.endDate);
-  
-    // console.log(Date(startDateObj.getTimezoneOffset()));
-    // console.log(Date(endDateObj.getTimezoneOffset()));
->>>>>>> 99d7bf617e57f80ea4ad6384f87f425572e736c3
   
     console.log("startDateObj is: " + startDateObj);
     console.log("endDateObj is: " + endDateObj);
@@ -89,14 +77,9 @@ router.post("/", function(req, res){
       'reminders': rb.reminders
    }
   
-<<<<<<< HEAD
     console.log("calendarData is: ", calendarData);
     gcalendar(calendarData);
     
-=======
-    console.log(calendarData);
-    gcalFunction.gcal(calendarData);
->>>>>>> 99d7bf617e57f80ea4ad6384f87f425572e736c3
     })
     .catch(err => {
       console.log(err);
