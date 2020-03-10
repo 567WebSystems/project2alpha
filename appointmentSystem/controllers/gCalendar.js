@@ -1,4 +1,5 @@
-function gCal(calendarData) {
+function gcalendar(calendarData) {
+
     if (calendarData) {
       const fs = require('fs');
       const readline = require('readline');
@@ -16,10 +17,10 @@ function gCal(calendarData) {
       fs.readFile('credentials.json', (err, content) => {
         if (err) return console.log('Error loading client secret file:', err);
         // Authorize a client with credentials, then call the Google Calendar API.
-        // authorize(JSON.parse(content), listAllEvents);
+        
         authorize(JSON.parse(content), listEvents);
+        
         authorize(JSON.parse(content), insertEvents);
-  
       });
   
       /**
@@ -100,50 +101,6 @@ function gCal(calendarData) {
         });
       }
   
-      function insertEvents(auth) {
-  
-        const calendar = google.calendar({ version: 'v3', auth });
-  
-        //console.log(calendarData);
-        var event = {
-          'summary': calendarData.summary,
-          'location': calendarData.location,
-          'description': calendarData.description,
-          'start': {
-            'dateTime': calendarData.start,
-            'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone,
-          },
-          'end': {
-            'dateTime': calendarData.end,
-            'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone,
-          },
-          'recurrence': [
-            'RRULE:FREQ=DAILY;COUNT='+calendarData.recurrence,
-          ],
-          'attendees': [
-            calendarData.attendees
-          ],
-          'reminders': [
-            calendarData.reminders
-          ]
-        };
-  
-        calendar.events.insert({
-          auth: auth,
-          calendarId: 'primary',
-          resource: event,
-        }, function(err, event) {
-          if (err) {
-            console.log('There was an error contacting the Calendar service: ' + err);
-            console.log("start date: " + calendarData.start);
-            console.log("end date: " + calendarData.end);
-
-            return;
-          }
-          console.log('Event created: %s', calendarData.summary);
-        });
-  
-      }
 
      }
   }
