@@ -17,6 +17,8 @@ const cookieSession = require('cookie-session');
 const keys = require('./config/keys');
 var app = express();
 
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
+
 // mongoDB
 mongoose.connect('mongodb+srv://itmd567:'+process.env.MONGODB_PW+'@567websystems-qgpxm.azure.mongodb.net/test?retryWrites=true&w=majority', 
   {
@@ -52,10 +54,16 @@ app.use('/users', usersRouter);
 app.use('/auth',authRoutes);
 app.use('/appointment',appointmentRoutes);
 
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
+app.post('/appointment', urlencodedParser, function (req, res) {
+  console.log(req.body);
+  res.render('/appt-success', {data: req.body})
+})
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -67,7 +75,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
 
 
 module.exports = app;

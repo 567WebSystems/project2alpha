@@ -36,8 +36,8 @@ router.post("/", function(req, res){
     endDateObj = new Date(rb.endDate + " " + rb.endTime);
 
   
-    console.log("startDateObj is: " + startDateObj);
-    console.log("endDateObj is: " + endDateObj);
+    //console.log("startDateObj is: " + startDateObj);
+    //console.log("endDateObj is: " + endDateObj);
   
     const event = new Event({ // parse event
       _id: mongoose.Types.ObjectId(),
@@ -77,7 +77,7 @@ router.post("/", function(req, res){
       'reminders': rb.reminders
    }
   
-    console.log("calendarData is: ", calendarData);
+    //console.log("calendarData is: ", calendarData);
     gcalendar(calendarData);
     
     })
