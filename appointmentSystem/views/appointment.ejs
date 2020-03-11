@@ -11,9 +11,10 @@
     <meta name="google-signin-client_id" content="351815199905-7866h3vhn4lrd4qbe8bk0l8sej8qdaj2.apps.googleusercontent.com">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
-    <title>User_Form</title>
+    <script rel="javascripts" src="/javascripts/scripts.js"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <title>Appointment Form</title>
   </head>
   <body>
       <nav>
@@ -25,15 +26,16 @@
 
       <section id="appointmentForm">
         <h1>Appointment Form</h1>
-        <form method="post" action="/appointment" >
+        <form method="post" action="/appointment" id="form" onsubmit="return(formValidation())" >
           Summary: <input type="text" id="summary" name="summary"><br><br>
-          Location: <input type="text" id=" location" name="location"><br><br>
+          Location: <input type="text" id="location" name="location"><br><br>
           Description: <input type="text" id="description" name="description"><br><br>
           Start: <input type="date" id="startDate" name="startDate"><input type="time" id="startTime" name="startTime"><br><br>
           End: <input type="date" id="endDate" name="endDate"><input type="time" id="endTime" name="endTime"><br><br>
-          Recurrence: (#) <input type="text" id="recurrence" name="recurrence"><br><br>
+          Recurrence: (#) <input type="number" id="recurrence" name="recurrence"><br><br>
           Attendee Email(s): <input type="text" id="attendees" name="attendees"><br><br>
           Reminders: <input type="text" id="reminders" name="reminders"><br><br>
+          <span id="error"></span><br>
           <button type="submit">Submit</button>
         </form>
       </section>
@@ -47,10 +49,7 @@
       <section class="eventList">
         <p id="myEvents"></p>
       </section>
-  
-      <script src="https://apis.google.com/js/api.js"></script>
-      <script type="text/javascript" src="/public/javascripts/scripts.js"></script>
-  
+
       <button onclick="deleteEvent()">delete</button>
       <button onclick="listEvents()">list</button>
   
