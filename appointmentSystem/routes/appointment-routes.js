@@ -21,6 +21,7 @@ router.get('/',authCheck,(req,res)=>{
 });
 
 router.get('/view-appointment',authCheck,(req,res)=>{
+  gcalFunction.listEvent();
   res.render('view-appointment',{user:req.user.userName});
 });
 
@@ -87,7 +88,7 @@ router.post("/", function(req, res){
    }
   
     console.log(calendarData);
-    gcalFunction.gcal(calendarData);
+    gcalFunction.insEvent(calendarData);
     res.render('appointment');  
   })
     .catch(err => {
