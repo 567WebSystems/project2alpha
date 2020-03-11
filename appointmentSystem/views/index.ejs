@@ -8,7 +8,7 @@
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
     crossorigin="anonymous"></script>
 
-    <meta name="google-signin-client_id" content="721662891407-m2p7me92ecd0ruci948val1njj4prh7n.apps.googleusercontent.com">
+    <meta name="google-signin-client_id" content="351815199905-7866h3vhn4lrd4qbe8bk0l8sej8qdaj2.apps.googleusercontent.com">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -21,41 +21,16 @@
       <a href="/auth/google">Login with Google</a>
     </nav>
 
-    <section id="appointmentForm">
-      <h1>Appointment Form</h1>
-      <form method="post" action="/" >
-        Summary: <input type="text" id="summary"><br><br>
-        Location: <input type="text" id=" location"><br><br>
-        Description: <input type="text" id="description"><br><br>
-        Start: <input type="date" id="startDate" name="startDate"><br><br>
-        End: <input type="date" id="endDate" name="endDate"><br><br>
-        Start Time: <input type="time" id="startTime" name="startTime"><br><br>
-        End Time: <input type="time" id="endTime" name="endTime"><br><br>
-        Recurrence: (#) <input type="text" id="recurrence"><br><br>
-        Attendee Email(s): <input type="text" id="attendees"><br><br>
-        Reminders: <input type="text" id="reminders"><br><br>
-        <button type="submit">Submit</button>
-      </form>
-    </section>
-
-   <!-- <br><br>
-    <section id="delete">
-      Calendar ID: <input type="text" id="calendarID" name="calendarID"><br><br>
-      Event ID: <input type="text" id="eventID" name="eventID"/><button type="delete" onClick="execute()">Delete</button>
-    </section> -->
-
-
     <script src="https://apis.google.com/js/api.js"></script>
     <script src="../controllers/listevents.js"></script>
 
-    <!-- <script src="./routes/index.js"></script> -->
-
-    <div class="g-signin2" data-onsuccess="onSignIn" ></div>
-    <a href="#" onclick="signOut()">Sign out</a>
+    <!-- <div class="g-signin2" data-onsuccess="onSignIn" ></div> -->
+    <!-- <a href="#" onclick="signOut()">Sign out</a>  -->
 
     <script>
-      
-      function onSignIn(googleUser) {
+
+    /*
+    function onSignIn(googleUser) {
       var profile = googleUser.getBasicProfile();
       console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
       console.log('Name: ' + profile.getName());
@@ -64,62 +39,19 @@
 
       $("#appointmentForm").css("display", "block");
       $("#eventButtons").css("display", "block");
+     
     }
-
-     /**
-      * Sample JavaScript code for calendar.calendarList.list
-      * See instructions for running APIs Explorer code samples locally:
-      * https://developers.google.com/explorer-help/guides/code_samples#javascript
-      */
-
-  // Make sure the client is loaded and sign-in is complete before calling this method.
-  function viewEvents() {
-    console.log("gapi.client.calendar: ", gapi.client.calendar)
-    return gapi.client.calendar;
-
-    /*return gapi.client.calendar.calendarList.list({})
-        .then(function(response) {
-                // Handle the results here (response.result has the parsed body).
-                console.log("Response", response);
-              },
-              function(err) { console.error("Execute error", err); });*/
-  }
-
-  function deleteEvent() {
-    return gapi.client.calendar.calendarList.delete({})
-        .then(function(response) {
-                // Handle the results here (response.result has the parsed body).
-                console.log("Response", response);
-              },
-              function(err) { console.error("Execute error", err); });
-  }
 
     function signOut() {
       var auth2 = gapi.auth2.getAuthInstance();
       auth2.signOut().then(function () {
         console.log('User signed out.');
       });
-
-      $("#appointmentForm").css("display", "none");
-      $("#eventButtons").css("display", "none");
     }
+    */
+    
   
   </script>
-    <!-- <button onclick="deleteEvent()">delete</button> -->
-    <!-- <button onclick="listAllEvents()">list</button> -->
-   
-    <form method="get" action="/" >
-      <button>list</button>
-    </form>
-    <form method="delete" action="/" >
-      <button>delete</button>
-    </form> 
-
-    <section id="eventButtons">
-      <p id="myEvents"></p>
-      <button onclick="viewEvents()">View Events</button>
-      <button onclick="deleteEvent()">Delete</button>
-    </section>
 
   </body>
   </html>

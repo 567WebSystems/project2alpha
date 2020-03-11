@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-console.log("loaded scripts.js")
-=======
 //validates the appointment form before proccessing further
 function formValidation(){
   var error = document.getElementById('error');
@@ -89,4 +86,3 @@ function listEvents() {
               },
               function(err) { console.error("Execute error", err); });
 }
->>>>>>> 1bd5e3f3d92ef105988c1c769be6787799b5bb57

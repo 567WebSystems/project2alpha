@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const mongoose = require('mongoose');
 
-const gcalendar = require('../controllers/gcalendar');
+const gcalFunction = require('../controllers/gcalendar');
 const Event = require('../models/event_model');
 
 var calendarData = {};
@@ -57,12 +57,7 @@ router.post("/", function(req, res){
   
     .then(result => {
       console.log(result); // display stored event
-<<<<<<< HEAD
-      res.render('appointment')
-  
-=======
      // res.status(201).json({
->>>>>>> 1bd5e3f3d92ef105988c1c769be6787799b5bb57
       var status = {
         message: 'Event stored to DB.',
       }
@@ -81,17 +76,10 @@ router.post("/", function(req, res){
       'reminders': rb.reminders
    }
   
-<<<<<<< HEAD
-    //console.log("calendarData is: ", calendarData);
-    gcalendar(calendarData);
-    
-    })
-=======
     console.log(calendarData);
     gcalFunction.gcal(calendarData);
     res.render('appointment');  
   })
->>>>>>> 1bd5e3f3d92ef105988c1c769be6787799b5bb57
     .catch(err => {
       console.log(err);
       res.status(500).json({
