@@ -29,7 +29,7 @@ router.get('/',authCheck,(req,res)=>{
     //           console.log("Response", response);
     //         },
     //         function(err) { console.error("Execute error", err); });
-});
+    // });
 
 router.get('/view-appointment',authCheck,(req,res)=>{
   gcalFunction.listEvent();
