@@ -5,18 +5,18 @@ body {
 
 /* Nav bar CSS */
 
-a {
-  color: #00B7FF;
-}
-
 nav {
-  background-color: #333;
+  background-color: white;
   overflow: hidden;
+  border-bottom: 2px solid #bdc3c7;
+  -webkit-box-shadow: 0 10px 5px -10px #bdc3c7;
+	-moz-box-shadow: 0 10px 5px -10px #bdc3c7;
+  box-shadow:0px 10px 5px -10px #bdc3c7;
 }
 
 nav a{
   float: left;
-  color: #f2f2f2;
+  color: black;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -24,13 +24,13 @@ nav a{
 }
 
 nav a:hover {
-  background-color: #ddd;
-  color: black;
+  background-color: black;
+  color: white;
 }
 
 nav a.active{
   background-color: #4CAF50;
-  color: white;
+  color: black;
 }
 
 .logout-btn{
@@ -50,6 +50,7 @@ nav a.active{
 }
 
 /*Appointment Form CSS*/
+
 
 
 #error{
