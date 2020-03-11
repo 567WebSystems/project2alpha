@@ -26,16 +26,41 @@
 
       <section id="appointmentForm">
         <h1>Appointment Form</h1>
-        <form method="post" action="/appointment" id="form" onsubmit="return(formValidation())" >
-          Summary: <input type="text" id="summary" name="summary"><br><br>
-          Location: <input type="text" id="location" name="location"><br><br>
-          Description: <input type="text" id="description" name="description"><br><br>
-          Start: <input type="date" id="startDate" name="startDate"><input type="time" id="startTime" name="startTime"><br><br>
-          End: <input type="date" id="endDate" name="endDate"><input type="time" id="endTime" name="endTime"><br><br>
-          Recurrence: (#) <input type="number" id="recurrence" name="recurrence"><br><br>
-          Attendee Email(s): <input type="text" id="attendees" name="attendees"><br><br>
-          Reminders: <input type="text" id="reminders" name="reminders"><br><br>
-          <span id="error"></span><br>
+        <form method="post" action="/appointment" onsubmit="return(formValidation())" >
+          <table align="center" id="form">
+            <tr>
+              <td>Summary:</td><td><input type="text" id="summary" name="summary"></td>
+            </tr>
+            <tr>
+              <td>Location:</td><td><input type="text" id="location" name="location"></td>
+            </tr>
+            <tr>
+              <td>Description:</td><td><input type="text" id="description" name="description"></td>
+            </tr>
+            <tr>
+              <td>Start Date:</td><td><input type="date" id="startDate" name="startDate"></td>
+            </tr>
+            <tr>
+              <td>Start Time:</td><td><input type="time" id="startTime" name="startTime"></td>
+            </tr>
+            <tr>
+              <td>End Date:</td><td><input type="date" id="endDate" name="endDate"></td>
+            </tr>
+            <tr>
+              <td>End Time</td><td><input type="time" id="endTime" name="endTime"></td>
+            </tr>
+            <tr>
+              <td>Recurrence: (#)</td><td><input type="number" id="recurrence" name="recurrence"></td>
+            </tr>
+            <tr>
+              <td>Attendee Email(s):</td><td><input type="text" id="attendees" name="attendees"></td>
+            </tr>
+            <tr>
+              <td>Reminders:</td><td><input type="text" id="reminders" name="reminders"></td>
+            </tr>
+            <tr><td><span id="error"></span></td></tr>
+           
+          </table>
           <button type="submit">Submit</button>
         </form>
       </section>

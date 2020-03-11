@@ -39,3 +39,12 @@ nav a.active{
   width: 30%;
   display: none;
 }
+
+#appointmentForm{
+  text-align: center;
+  display: block;
+}
+
+#form{
+  text-align: left;
+}
