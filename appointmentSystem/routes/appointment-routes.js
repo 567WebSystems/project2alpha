@@ -20,6 +20,10 @@ router.get('/',authCheck,(req,res)=>{
     res.render('appointment',{user:req.user.userName});
 });
 
+router.get('/view-appointment',authCheck,(req,res)=>{
+  res.render('view-appointment',{user:req.user.userName});
+});
+
 router.post("/", function(req, res){
     let rb = req.body;
   
