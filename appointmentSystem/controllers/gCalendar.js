@@ -1,4 +1,5 @@
 const appRoutes = require('../routes/appointment-routes');
+const passport = require('passport');
 var startDateObj = appRoutes.startDateObj;
 var endDateObj = appRoutes.endDateObj;
 var calendarData;
@@ -81,6 +82,7 @@ module.exports = { gcal : function gCal(calendarData) {
        * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
        */
       function listEvents(auth) {
+        console.log("This is token"+auth);
         const calendar = google.calendar({version: 'v3', auth});
         //console.log("calendarList is: " + calendar.calendarList.list);
         calendar.events.list({
@@ -106,7 +108,7 @@ module.exports = { gcal : function gCal(calendarData) {
   
       function insertEvents(auth) {
   
-        const calendar = google.calendar({ version: 'v3', auth });
+        const calendar = google.calendar({ version: 'v3', auth});
   
         //console.log(calendarData);
         var event = {
@@ -123,9 +125,6 @@ module.exports = { gcal : function gCal(calendarData) {
             dateTime: calendarData.end,
             'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone,
           },
-          'recurrence': [
-            'RRULE:FREQ=DAILY;COUNT='+calendarData.recurrence,
-          ],
           'attendees': [
             calendarData.attendees
           ],

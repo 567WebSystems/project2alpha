@@ -50,8 +50,6 @@ router.post("/", function(req, res){
   
     .then(result => {
       console.log(result); // display stored event
-      res.render('appointment')
-  
      // res.status(201).json({
       var status = {
         message: 'Event stored to DB.',
@@ -86,7 +84,8 @@ router.post("/", function(req, res){
   
     console.log(calendarData);
     gcalFunction.gcal(calendarData);
-    })
+    res.render('appointment');  
+  })
     .catch(err => {
       console.log(err);
       res.status(500).json({
@@ -94,7 +93,7 @@ router.post("/", function(req, res){
       });
     });
   
-    
+      
   });
 
 module.exports = router;
