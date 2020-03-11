@@ -20,11 +20,8 @@ const authCheck = (req,res, next) =>{
 
 router.get('/',authCheck,(req,res)=>{
     res.render('appointment',{user:req.user.userName});
-<<<<<<< Updated upstream
-=======
     gcalFunction.listEvent();
 });
->>>>>>> Stashed changes
 
     // return gapi.client.calendar.calendarList.list({})
     //   .then(function(response) {
