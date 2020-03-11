@@ -53,8 +53,7 @@ app.use('/users', usersRouter);
 
 app.use('/auth',authRoutes);
 app.use('/appointment',appointmentRoutes);
-
-
+app.use('/appointment/view-appointment',appointmentRoutes);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
