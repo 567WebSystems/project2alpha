@@ -18,7 +18,8 @@
   </head>
   <body>
       <nav>
-          <a href="/auth/logout">Logout</a>
+          <a href="/view-appointment"><span id="view-appointment"></span>View Appointments</a>
+          <a class="logout-btn" href="/auth/logout"><span id="logout-icon"></span>Logout</a>
       </nav>
       <section id="appointmentForm">
         <h1>Appointment Form</h1>
@@ -55,6 +56,7 @@
               <td>Reminders:</td><td><input type="text" id="reminders" name="reminders"></td>
             </tr>
           </table>
+          <br>
           <span id="error"></span>
           <input type="submit" value="Submit"></input>
         </form>
@@ -70,7 +72,10 @@
         <p id="myEvents"></p>
       </section>
 
-      <button onclick="deleteEvent()">delete</button>
-      <button onclick="listEvents()">list</button>
+      <section class="operation-btns">
+        <button class="btn" onclick="deleteEvent()">Delete</button>
+        <button class="btn" onclick="listEvents()">List</button>
+      </section>
+      
   
   </body>

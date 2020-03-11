@@ -82,7 +82,6 @@ module.exports = { gcal : function gCal(calendarData) {
        * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
        */
       function listEvents(auth) {
-        console.log("This is token"+auth);
         const calendar = google.calendar({version: 'v3', auth});
         //console.log("calendarList is: " + calendar.calendarList.list);
         calendar.events.list({

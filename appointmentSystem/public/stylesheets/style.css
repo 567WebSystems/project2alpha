@@ -3,6 +3,8 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+/* Nav bar CSS */
+
 a {
   color: #00B7FF;
 }
@@ -31,6 +33,25 @@ nav a.active{
   color: white;
 }
 
+.logout-btn{
+  float: right;
+}
+
+#view-appointment{
+  background: transparent url(/images/list_icon.png) center left no-repeat;
+  background-size: 20px;
+  padding: 15px;
+}
+
+#logout-icon{
+  background: transparent url(/images/logout_icon.png) center left no-repeat;
+  background-size: 20px;
+  padding: 15px;
+}
+
+/*Appointment Form CSS*/
+
+
 #error{
   color: red;
   background-color: rgba(207, 0, 15, 0.2);
@@ -55,7 +76,7 @@ input[type=text], input[type=number], input[type=date], input[type=time] {
   width: 100%;
 }
 
-input[type=submit]{
+input[type=submit], .btn{
   background-color: rgb(30, 139, 195);
   border: none;
   color: white;
@@ -65,4 +86,8 @@ input[type=submit]{
   font-size: 14px;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.operation-btns{
+  text-align: center;
 }
