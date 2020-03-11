@@ -149,4 +149,23 @@ module.exports = { gcal : function gCal(calendarData) {
 
      }
     }
+<<<<<<< Updated upstream
   }
+=======
+
+}
+
+
+module.exports = { //gCal
+  insEvent : function insEvent(data){
+  calendarData = data;
+  gCal("insertEvents");
+  //gCal.insertEvents;
+}, 
+listEvent : function listEvent(){
+  gCal("listEvents");
+  //gCal.listEvent;
+}
+}
+  
+>>>>>>> Stashed changes
