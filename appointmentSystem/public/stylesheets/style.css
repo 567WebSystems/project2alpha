@@ -36,7 +36,6 @@ nav a.active{
   background-color: rgba(207, 0, 15, 0.2);
   padding: 5px;
   border-radius: 5px;
-  width: 30%;
   display: none;
 }
 
@@ -47,4 +46,23 @@ nav a.active{
 
 #form{
   text-align: left;
+  font-size: 14px;
+}
+input[type=text], input[type=number], input[type=date], input[type=time] {
+  border: 2px solid rgb(46, 49, 49);
+  border-radius: 4px;
+  padding: 5px;
+  width: 100%;
+}
+
+input[type=submit]{
+  background-color: rgb(30, 139, 195);
+  border: none;
+  color: white;
+  padding: 10px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
 }
