@@ -1,11 +1,9 @@
-const appRoutes = require('../routes/appointment-routes');
-const passport = require('passport');
-var startDateObj = appRoutes.startDateObj;
-var endDateObj = appRoutes.endDateObj;
 var calendarData;
+
 const fs = require('fs');
 const readline = require('readline');
 const {google} = require('googleapis');
+
 function gCal(functionName) {
     // If modifying these scopes, delete token.json.
     const SCOPES = ['https://www.googleapis.com/auth/calendar'];
@@ -83,6 +81,7 @@ function gCal(functionName) {
      */
     function listEvents(auth) {
       console.log(functionName);
+      var eventNames = [];
       const calendar = google.calendar({version: 'v3', auth});
       //console.log("calendarList is: " + calendar.calendarList.list);
       calendar.events.list({
@@ -94,12 +93,15 @@ function gCal(functionName) {
       }, (err, res) => {
         if (err) return console.log('The API returned an error: ' + err);
         const events = res.data.items;
+        console.log(events);
         if (events.length) {
           console.log('Upcoming 10 events:');
           events.map((event, i) => {
             const start = event.start.dateTime || event.start.date;
             console.log(`${start} - ${event.summary}`);
+            eventNames[i] = event.summary;
           });
+          console.log("Array of events:", eventNames);
         } else {
           console.log('No upcoming events found.');
         }
@@ -149,13 +151,11 @@ function gCal(functionName) {
 
 }
 
-
 module.exports = { insEvent : function insEvent(data){
   calendarData = data;
   gCal("insertEvents");
 }, 
-listEvent : function listEvent(){
-  gCal("listEvents");
+  listEvent : function listEvent(){
+    gCal("listEvents");
+  }
 }
-}
-  
