@@ -1,6 +1,11 @@
-function gcalendar(calendarData) {
+const appRoutes = require('../routes/appointment-routes');
+const passport = require('passport');
+var startDateObj = appRoutes.startDateObj;
+var endDateObj = appRoutes.endDateObj;
+var calendarData;
 
-  if (calendarData != {}) {
+module.exports = { gcal : function gCal(calendarData) {
+    if (calendarData) {
       const fs = require('fs');
       const readline = require('readline');
       const {google} = require('googleapis');
@@ -103,7 +108,7 @@ function gcalendar(calendarData) {
 
       function insertEvents(auth) {
   
-        const calendar = google.calendar({ version: 'v3', auth });
+        const calendar = google.calendar({ version: 'v3', auth});
   
         //console.log(calendarData);
         var event = {
@@ -120,9 +125,6 @@ function gcalendar(calendarData) {
             dateTime: calendarData.end,
             'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone,
           },
-          'recurrence': [
-            'RRULE:FREQ=DAILY;COUNT='+calendarData.recurrence,
-          ],
           'attendees': [
             calendarData.attendees
           ],
@@ -147,6 +149,4 @@ function gcalendar(calendarData) {
 
      }
     }
-
-
-  module.exports = gcalendar;
+  }
