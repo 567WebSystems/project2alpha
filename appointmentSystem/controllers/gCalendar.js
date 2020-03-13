@@ -22,6 +22,8 @@ function gCal(functionName) {
         authorize(JSON.parse(content), insertEvents);
       }else if(functionName == "listEvents"){
         authorize(JSON.parse(content), listEvents);
+      }else if(functionName == "deleteEvent"){
+        authorize(JSON.parse(content), deleteEvent);
       }
     });
 
@@ -80,7 +82,7 @@ function gCal(functionName) {
      * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
      */
     function listEvents(auth) {
-      console.log(functionName);
+      console.log("This is the function name:", functionName);
       var eventNames = [];
       const calendar = google.calendar({version: 'v3', auth});
       //console.log("calendarList is: " + calendar.calendarList.list);
@@ -101,10 +103,36 @@ function gCal(functionName) {
             console.log(`${start} - ${event.summary}`);
             eventNames[i] = event.summary;
           });
-          console.log("Array of events:", eventNames);
+          console.log("Array of event names:", eventNames);
         } else {
           console.log('No upcoming events found.');
         }
+      });
+    }
+
+    function deleteEvent(auth) {
+      console.log("deleteEvent function initiated");
+      console.log("This is the function name:", functionName);
+      var calendarId = 'primary';
+      var eventId = 'f83sk9fetg49kt8qbtodeqm9kc'; // hard coded ID
+      const calendar = google.calendar({version: 'v3', auth});
+
+      var params = {
+        calendarId: calendarId,
+        eventId: eventId
+      };
+
+      calendar.events.delete(params, (res) => {
+        if (res) return console.log('Event Deletion Verification: ' + res);
+        // const events = res.data.items;
+        // if (events.length) {
+        //   console.log('Upcoming 10 events to delete:');
+        //   events.map((event, i) => {
+        //     console.log(`${event.id}`);
+        //   });
+        // } else {
+        //   console.log('No upcoming events found to delete.');
+        // }
       });
     }
 
@@ -152,10 +180,13 @@ function gCal(functionName) {
 }
 
 module.exports = { insEvent : function insEvent(data){
-  calendarData = data;
-  gCal("insertEvents");
-}, 
+    calendarData = data;
+    gCal("insertEvents");
+  }, 
   listEvent : function listEvent(){
     gCal("listEvents");
+  },
+  deleteEvent : function deleteEvent(){
+    gCal("deleteEvent");
   }
 }
