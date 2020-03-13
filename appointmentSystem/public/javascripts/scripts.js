@@ -1,3 +1,4 @@
+//console.log("scripts loaded")
 //validates the appointment form before proccessing further
 function formValidation(){
   var error = document.getElementById('error');
@@ -62,27 +63,4 @@ function formValidation(){
     return false;
   }
   return true;
-}
-
-// Make sure the client is loaded and sign-in is complete before calling this method.
-function deleteEvent() {
-    return gapi.client.calendar.calendarList.delete({})
-        .then(function(response) {
-                // Handle the results here (response.result has the parsed body).
-                console.log("Response", response);
-            },
-            function(err) { console.error("Execute error", err); });
-} 
-
-  gapi.load("client:auth2", function() {
-    gapi.auth2.init({client_id: "1012259665491-h9mjitf64jabj5b5fm03umu5c6a84t9o.apps.googleusercontent.com"});
-  });
-
-function listEvents() {
-    return gapi.client.calendar.calendarList.list({})
-        .then(function(response) {
-                // Handle the results here (response.result has the parsed body).
-                console.log("Response", response);
-              },
-              function(err) { console.error("Execute error", err); });
 }
