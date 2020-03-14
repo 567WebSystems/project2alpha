@@ -25,7 +25,7 @@ router.get('/view-appointment',authCheck,(req,res)=>{
 
 router.post("/view-appointment",authCheck,(req,res)=>{
   let e = req.body.de;
-  console.log(e);
+  gcalFunction.deleteEvent(e);
   getAppointmentList(res,req);
 });
 
