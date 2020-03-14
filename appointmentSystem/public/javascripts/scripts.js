@@ -1,7 +1,5 @@
 //validates the appointment form before proccessing further
 
-
-
 function formValidation(){
   var error = document.getElementById('error');
   if(document.getElementById('summary').value == ""){
@@ -98,3 +96,4 @@ function del(e){
     console.log('server response');
 }});
 }
+

@@ -29,11 +29,16 @@ router.post("/view-appointment",authCheck,(req,res)=>{
   getAppointmentList(res,req);
 });
 
+router.post('/view-appointment',authCheck,(req,res)=>{
+  gcalFunction.deleteEvent();
+  console.log("delete route initiated");
+});
+
 router.post("/", function(req, res){
     let rb = req.body;
   
-    startDateObj = new Date(rb.startTime + rb.startDate);
-    endDateObj = new Date(rb.endTime + rb.endDate);
+    startDateObj = new Date(rb.startTime +" "+ rb.startDate);
+    endDateObj = new Date(rb.endTime +" "+ rb.endDate);
   
     // console.log(Date(startDateObj.getTimezoneOffset()));
     // console.log(Date(endDateObj.getTimezoneOffset()));
