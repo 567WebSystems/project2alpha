@@ -1,7 +1,9 @@
 const appRoutes = require('../routes/appointment-routes');
 const passport = require('passport');
 var startDateObj = appRoutes.startDateObj;
+const mongoose = require('mongoose');
 var endDateObj = appRoutes.endDateObj;
+const Event = require('../models/event_model');
 var calendarData;
 const fs = require('fs');
 const readline = require('readline');
@@ -97,8 +99,33 @@ function gCal(functionName) {
         if (events.length) {
           console.log('Upcoming 10 events:');
           events.map((event, i) => {
-            const start = event.start.dateTime || event.start.date;
-            console.log(`${start} - ${event.summary}`);
+            Event.findOne({
+              event_id: event.id
+          }).then((currentEvent) => {
+              if(currentEvent){
+                  //User exists
+                  console.log('Event already exists', currentEvent);
+              }else{
+              const ev = new Event({ // parse event
+              _id: mongoose.Types.ObjectId(),
+              event_id: event.id,
+              summary: event.summary,
+              location: event.location,
+              description: event.description,
+              start: event.start.dateTime,
+              end: event.end.dateTime
+            });
+
+            console.log("event is: " + ev)
+            console.log("Attempting to store in db...")
+            ev.save() // store event in db
+            .then(result => {
+              console.log(result); // display stored event
+               // res.status(201).json({
+            console.log("status: Event Stored");
+          });
+        }
+      });
           });
         } else {
           console.log('No upcoming events found.');
@@ -156,6 +183,8 @@ module.exports = { insEvent : function insEvent(data){
 }, 
 listEvent : function listEvent(){
   gCal("listEvents");
+},deleteEvent: function deleteEvent(dEvent){
+  console.log(dEvent);
 }
 }
   

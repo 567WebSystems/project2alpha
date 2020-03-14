@@ -7,11 +7,11 @@
     src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
     crossorigin="anonymous"></script>
-
     <meta name="google-signin-client_id" content="351815199905-7866h3vhn4lrd4qbe8bk0l8sej8qdaj2.apps.googleusercontent.com">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+    <script rel="javascripts" src="/javascripts/scripts.js"></script>
     <title>Appointment List</title>
   </head>
   <body>
@@ -21,6 +21,28 @@
     </nav>
     <section class="appointment-list">
         <h1>Upcoming Events</h1>
+        <section class="table-contents">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Event Name</th>
+                <th>Event start</th>
+                <th>Event End</th>
+                <th></th>
+              </tr>
+              <% events.forEach(function (eve) { %>
+              <tr>
+                <td>1</td>
+                <td><%= eve.summary%></td>
+                <td><%= eve.start%></td>
+                <td><%= eve.end%></td>
+                <td><button onclick="del('<%= eve.event_id%>')">Delete</button></td>
+              </tr>
+              <% }) %>
+            </thead>
+          </table>
+        </section>
     </section>
   </body>
 </html>

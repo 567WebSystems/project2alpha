@@ -1,4 +1,7 @@
 //validates the appointment form before proccessing further
+
+
+
 function formValidation(){
   var error = document.getElementById('error');
   if(document.getElementById('summary').value == ""){
@@ -85,4 +88,13 @@ function listEvents() {
                 console.log("Response", response);
               },
               function(err) { console.error("Execute error", err); });
+}
+
+function del(e){
+  $.ajax({url: 'http://localhost:3000/appointment/view-appointment', 
+    data: {de:e},
+    type: "POST",
+    success:function(res){
+    console.log('server response');
+}});
 }
