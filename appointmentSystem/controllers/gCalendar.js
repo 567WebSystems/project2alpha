@@ -24,6 +24,8 @@ function gCal(functionName) {
         authorize(JSON.parse(content), listEvents);
       }else if(functionName == "deleteEvent"){
         authorize(JSON.parse(content), deleteEvent);
+      }else if(functionName == "updateEvent"){
+        authorize(JSON.parse(content), updateEvent);
       }
     });
 
@@ -136,6 +138,30 @@ function gCal(functionName) {
       });
     }
 
+    function updateEvent(auth) {
+      console.log("updateEvent function initiated");
+      console.log("This is the function name:", functionName);
+      var calendarId = 'primary';
+      var eventId;
+      var start;
+      var end;
+      const calendar = google.calendar({version: 'v3', auth});
+
+      var idParams = {
+        calendarId: calendarId,
+        eventId: eventId
+      };
+
+      var timeParams = {
+        start: start,
+        end: end
+      };
+
+      calendar.events.patch(idParams, timeParams, (res) => {
+        if (res) return console.log('Event Update Verification: ' + res);
+      });
+    }
+
     function insertEvents(auth) {
 
       const calendar = google.calendar({ version: 'v3', auth});
@@ -188,5 +214,8 @@ module.exports = { insEvent : function insEvent(data){
   },
   deleteEvent : function deleteEvent(){
     gCal("deleteEvent");
+  },
+  updateEvent : function updateEvent(){
+    gCal("updateEvent");
   }
 }
