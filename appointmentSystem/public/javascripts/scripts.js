@@ -88,12 +88,14 @@ function listEvents() {
               function(err) { console.error("Execute error", err); });
 }
 
-function del(e){
-  $.ajax({url: 'http://localhost:3000/appointment/view-appointment', 
-    data: {de:e},
+function del(eventID,eventSummary){
+  if(confirm("Confirm do you want to delete "+ eventSummary +" event?")){
+    $.ajax({url: 'http://localhost:3000/appointment/view-appointment', 
+    data: {de:eventID},
     type: "POST",
     success:function(res){
     console.log('server response');
-}});
+    }});
+  }
 }
 
