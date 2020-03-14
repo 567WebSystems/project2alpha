@@ -1,14 +1,23 @@
 const router = require('express').Router();
 const mongoose = require('mongoose');
+<<<<<<< HEAD
 
 const gcalFunction = require('../controllers/gcalendar');
+=======
+const gcalFunction = require('../controllers/gCalendar');
+>>>>>>> 1c6d4e1c50679d0607d3acc2ba59f8ac90b95d4a
 const Event = require('../models/event_model');
 
 var calendarData = {};
+<<<<<<< HEAD
 var startDateObj = "text";
 var endDateObj = "text";
 
 
+=======
+var startDateObj;
+var endDateObj;
+>>>>>>> 1c6d4e1c50679d0607d3acc2ba59f8ac90b95d4a
 const authCheck = (req,res, next) =>{
     if(!req.user){
         // if user is not logged in
@@ -19,8 +28,12 @@ const authCheck = (req,res, next) =>{
 };
 
 router.get('/',authCheck,(req,res)=>{
+<<<<<<< HEAD
     res.render('appointment',{user:req.user.userName});
     gcalFunction.listEvent();
+=======
+    res.render('appointment',{user:req.user});
+>>>>>>> 1c6d4e1c50679d0607d3acc2ba59f8ac90b95d4a
 });
 
     // return gapi.client.calendar.calendarList.list({})
@@ -32,13 +45,26 @@ router.get('/',authCheck,(req,res)=>{
     // });
 
 router.get('/view-appointment',authCheck,(req,res)=>{
-  gcalFunction.listEvent();
-  res.render('view-appointment',{user:req.user.userName});
+  async function getl(){
+    gcalFunction.listEvent(req.user.googleId);
+  }
+  getl().then(getAppointmentList(res,req));
 });
+
+router.post("/view-appointment",authCheck,(req,res)=>{
+  let e = req.body.de;
+  async function run(){
+    gcalFunction.deleteEvent(e);
+    gcalFunction.listEvent(req.user.googleId);
+  }
+  run().then(getAppointmentList(res,req));
+});
+
 
 router.post("/", function(req, res){
     let rb = req.body;
   
+<<<<<<< HEAD
     startDateObj = new Date(rb.startDate + " " + rb.startTime);
     endDateObj = new Date(rb.endDate + " " + rb.endTime);
 
@@ -71,6 +97,17 @@ router.post("/", function(req, res){
   
      console.log("status: " + status.message)
   
+=======
+    startDateObj = new Date(rb.startTime +" "+ rb.startDate);
+    endDateObj = new Date(rb.endTime +" "+ rb.endDate);
+  
+    // console.log(Date(startDateObj.getTimezoneOffset()));
+    // console.log(Date(endDateObj.getTimezoneOffset()));
+  
+    console.log("startDateObj is: " + startDateObj);
+    console.log("endDateObj is: " + endDateObj);
+
+>>>>>>> 1c6d4e1c50679d0607d3acc2ba59f8ac90b95d4a
    calendarData = {
       _id: mongoose.Types.ObjectId(),
       'summary': rb.summary,
@@ -82,20 +119,20 @@ router.post("/", function(req, res){
       'attendees': rb.attendees,
       'reminders': rb.reminders
    }
-  
     console.log(calendarData);
     gcalFunction.insEvent(calendarData);
-    res.render('appointment');  
-  })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json({
-          error: err
-      });
-    });
-  
-      
+    res.render('appointment',{user:req.user.userName});  
   });
+  
+  function getAppointmentList(res,req){
+    Event.find({userID: req.user.googleId}).exec(function(err, events) {   
+      if (err) {
+        throw err;
+      }else{
+      res.render('view-appointment', { "events": events});
+      }
+    });
+  }
 
 router.delete('/',authCheck,(req,res)=>{
   console.log("On delete route...")

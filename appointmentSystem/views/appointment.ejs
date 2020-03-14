@@ -24,6 +24,7 @@
           <a class="logout-btn" href="/auth/logout"><span id="logout-icon"></span>Logout</a>
       </nav>
       <section id="appointmentForm">
+        <h1>Welcome, <%=user%></h1>
         <h1>Appointment Form</h1>
         <form method="post" action="/appointment" onsubmit="return(formValidation())" >
           <table align="center" id="form">
@@ -60,14 +61,17 @@
           </table>
           <br>
           <span id="error"></span>
-          <input type="submit" value="Submit"></input>
+          <input type="submit" value="Submit" />
         </form>
 
       </section>
   
+<<<<<<< HEAD
       <!-- <section class="operation-btns">
         <button class="btn" onclick="deleteEvent()">Delete</button>
         <button class="btn" onclick="listEvent()">List</button>
       </section> -->
       
+=======
+>>>>>>> 1c6d4e1c50679d0607d3acc2ba59f8ac90b95d4a
   </body>
