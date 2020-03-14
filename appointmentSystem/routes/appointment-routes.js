@@ -15,19 +15,21 @@ const authCheck = (req,res, next) =>{
 };
 
 router.get('/',authCheck,(req,res)=>{
-    res.render('appointment',{user:req.user.userName});
-      
+    res.render('appointment',{user:req.user});
 });
 
 router.get('/view-appointment',authCheck,(req,res)=>{
-  getAppointmentList(res,req);
-  gcalFunction.listEvent();
+  async function getl(){
+    gcalFunction.listEvent(req.user.googleId);
+  }
+  getl().then(getAppointmentList(res,req));
 });
 
 router.post("/view-appointment",authCheck,(req,res)=>{
   let e = req.body.de;
   async function run(){
     gcalFunction.deleteEvent(e);
+    gcalFunction.listEvent(req.user.googleId);
   }
   run().then(getAppointmentList(res,req));
 });
@@ -56,14 +58,13 @@ router.post("/", function(req, res){
       'attendees': rb.attendees,
       'reminders': rb.reminders
    }
-  
     console.log(calendarData);
     gcalFunction.insEvent(calendarData);
-    res.render('appointment');  
+    res.render('appointment',{user:req.user.userName});  
   });
   
   function getAppointmentList(res,req){
-    Event.find({}).exec(function(err, events) {   
+    Event.find({userID: req.user.googleId}).exec(function(err, events) {   
       if (err) {
         throw err;
       }else{

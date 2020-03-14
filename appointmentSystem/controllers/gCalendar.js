@@ -8,6 +8,7 @@ const Event = require('../models/event_model');
 
 var calendarData;
 var eventID;
+var gID;
 const fs = require('fs');
 const readline = require('readline');
 const {google} = require('googleapis');
@@ -116,6 +117,7 @@ function gCal(functionName) {
               }else{
               const ev = new Event({ // parse event
               _id: mongoose.Types.ObjectId(),
+              userID: gID,
               event_id: event.id,
               summary: event.summary,
               location: event.location,
@@ -215,8 +217,10 @@ module.exports = { insEvent : function insEvent(data){
   calendarData = data;
   gCal("insertEvents");
 }, 
-listEvent : function listEvent(){
+listEvent : function listEvent(id){
+  gID = id;
   gCal("listEvents");
+  return "done";
 },deleteEvent: function deleteEvent(dEvent){
   eventID = dEvent;
   gCal("deleteEvent");
