@@ -28,12 +28,7 @@ const authCheck = (req,res, next) =>{
 };
 
 router.get('/',authCheck,(req,res)=>{
-<<<<<<< HEAD
     res.render('appointment',{user:req.user.userName});
-    gcalFunction.listEvent();
-=======
-    res.render('appointment',{user:req.user});
->>>>>>> 1c6d4e1c50679d0607d3acc2ba59f8ac90b95d4a
 });
 
     // return gapi.client.calendar.calendarList.list({})
