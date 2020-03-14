@@ -94,7 +94,7 @@ function del(eventID,eventSummary){
     data: {de:eventID},
     type: "POST",
     success:function(res){
-    console.log('server response');
+      window.location.reload(true);
     }});
   }
 }

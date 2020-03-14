@@ -16,23 +16,22 @@ const authCheck = (req,res, next) =>{
 
 router.get('/',authCheck,(req,res)=>{
     res.render('appointment',{user:req.user.userName});
-      gcalFunction.listEvent();
+      
 });
 
 router.get('/view-appointment',authCheck,(req,res)=>{
   getAppointmentList(res,req);
+  gcalFunction.listEvent();
 });
 
 router.post("/view-appointment",authCheck,(req,res)=>{
   let e = req.body.de;
-  gcalFunction.deleteEvent(e);
-  getAppointmentList(res,req);
+  async function run(){
+    gcalFunction.deleteEvent(e);
+  }
+  run().then(getAppointmentList(res,req));
 });
 
-router.post('/view-appointment',authCheck,(req,res)=>{
-  gcalFunction.deleteEvent();
-  console.log("delete route initiated");
-});
 
 router.post("/", function(req, res){
     let rb = req.body;
