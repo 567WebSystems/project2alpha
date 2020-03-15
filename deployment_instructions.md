@@ -8,12 +8,8 @@ To try out the Calendar Appointment Web System (CAWS) project, perform the follo
 
 4) Change directory (cd) into the following: "~/Documents/Github/567WebSystems/project2alpha/appointmentSystem"
 
-<<<<<<< Updated upstream
-5) Type the "npm start" command. The project will start-up shortly.
-=======
 5) Run "npm install" to add all of the packages modules for this project.
 
 6) Type the "npm start" command. The project will start-up shortly.
->>>>>>> Stashed changes
 
 Feel free to post any and all feedback on [Basecamp](https://launchpad.37signals.com/bc3/3630934/signin). Thank you.
