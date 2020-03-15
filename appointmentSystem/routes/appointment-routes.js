@@ -14,8 +14,13 @@ const authCheck = (req,res, next) =>{
     }
 };
 
+<<<<<<< HEAD
+router.get('/',authCheck,(req,res)=>{
+    res.render('appointment',{user:req.user.userName});
+=======
 router.get('/',authCheck,(req,res)=>{  
     res.render('appointment',{user:req.user});
+>>>>>>> 6bbbfa10c4f483d60829c4636cb22d9bcf53dab8
 });
 
 router.get('/view-appointment',authCheck,(req,res)=>{
