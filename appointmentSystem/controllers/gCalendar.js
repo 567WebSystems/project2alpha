@@ -4,8 +4,6 @@ var startDateObj = appRoutes.startDateObj;
 const mongoose = require('mongoose');
 var endDateObj = appRoutes.endDateObj;
 const Event = require('../models/event_model');
-
-
 var calendarData;
 var eventID;
 var gID;
