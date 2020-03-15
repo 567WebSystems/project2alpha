@@ -17,6 +17,7 @@
   </head>
   <body>
     <nav>
+      <img class="logo view-appointment" src="/images/logo.png" style="float: left;"/>
         <a href="/appointment"><span id="form-icon"></span>Appointment Form</a>
         <a class="logout-btn" href="/auth/logout"><span id="logout-icon"></span>Logout</a>
     </nav>
@@ -32,9 +33,11 @@
                 <th>Event End</th>
                 <th></th>
               </tr>
+              <%var count = 0%>
               <% events.forEach(function (eve) { %>
+                <%count++%>
               <tr>
-                <td>1</td>
+                <td><%=count%></td>
                 <td><%= eve.summary%></td>
                 <td><%= eve.start%></td>
                 <td><%= eve.end%></td>

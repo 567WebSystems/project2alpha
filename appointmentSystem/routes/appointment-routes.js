@@ -14,15 +14,18 @@ const authCheck = (req,res, next) =>{
     }
 };
 
+<<<<<<< HEAD
 router.get('/',authCheck,(req,res)=>{
     res.render('appointment',{user:req.user.userName});
+=======
+router.get('/',authCheck,(req,res)=>{  
+    res.render('appointment',{user:req.user});
+>>>>>>> 6bbbfa10c4f483d60829c4636cb22d9bcf53dab8
 });
 
 router.get('/view-appointment',authCheck,(req,res)=>{
-  async function getl(){
     gcalFunction.listEvent(req.user.googleId);
-  }
-  getl().then(getAppointmentList(res,req));
+    getAppointmentList(res,req);
 });
 
 router.post("/view-appointment",authCheck,(req,res)=>{
@@ -60,7 +63,7 @@ router.post("/", function(req, res){
    }
     console.log(calendarData);
     gcalFunction.insEvent(calendarData);
-    res.render('appointment',{user:req.user.userName});  
+    res.render('appointment',{user:req.user});  
   });
   
   function getAppointmentList(res,req){
@@ -68,7 +71,7 @@ router.post("/", function(req, res){
       if (err) {
         throw err;
       }else{
-      res.render('view-appointment', { "events": events});
+        res.render('view-appointment', { "events": events})
       }
     });
   }
