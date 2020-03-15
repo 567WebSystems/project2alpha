@@ -4,6 +4,7 @@ const gcalFunction = require('../controllers/gCalendar');
 const Event = require('../models/event_model');
 var calendarData = {};
 var startDateObj;
+var eventLists;
 var endDateObj;
 const authCheck = (req,res, next) =>{
     if(!req.user){
@@ -15,14 +16,17 @@ const authCheck = (req,res, next) =>{
 };
 
 router.get('/',authCheck,(req,res)=>{
-    res.render('appointment',{user:req.user});
+  async function glist(){
+    getAppointmentList(res,req);  
+  }
+glist().then( res.render('appointment',{user:req.user}));
 });
 
 router.get('/view-appointment',authCheck,(req,res)=>{
   async function getl(){
     gcalFunction.listEvent(req.user.googleId);
   }
-  getl().then(getAppointmentList(res,req));
+  getl().then(getAppointmentList(res,req),res.render('view-appointment', { "events": eventLists}));
 });
 
 router.post("/view-appointment",authCheck,(req,res)=>{
@@ -31,7 +35,7 @@ router.post("/view-appointment",authCheck,(req,res)=>{
     gcalFunction.deleteEvent(e);
     gcalFunction.listEvent(req.user.googleId);
   }
-  run().then(getAppointmentList(res,req));
+  run().then(getAppointmentList(res,req),res.render('view-appointment', { "events": eventLists}));
 });
 
 
@@ -60,6 +64,7 @@ router.post("/", function(req, res){
    }
     console.log(calendarData);
     gcalFunction.insEvent(calendarData);
+    getAppointmentList(res,req);
     res.render('appointment',{user:req.user.userName});  
   });
   
@@ -68,7 +73,7 @@ router.post("/", function(req, res){
       if (err) {
         throw err;
       }else{
-      res.render('view-appointment', { "events": events});
+        eventLists = events;
       }
     });
   }

@@ -32,9 +32,11 @@
                 <th>Event End</th>
                 <th></th>
               </tr>
+              <%var count = 0%>
               <% events.forEach(function (eve) { %>
+                <%count++%>
               <tr>
-                <td>1</td>
+                <td><%=count%></td>
                 <td><%= eve.summary%></td>
                 <td><%= eve.start%></td>
                 <td><%= eve.end%></td>

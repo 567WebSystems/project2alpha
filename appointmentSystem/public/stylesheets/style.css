@@ -5,6 +5,13 @@ body {
 
 /* Nav bar CSS */
 
+.google-btn{
+  background-color: red;
+  color: white;
+  display: block;
+  float: right;
+}
+
 nav {
   background-color: white;
   overflow: hidden;
