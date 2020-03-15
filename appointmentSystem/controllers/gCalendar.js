@@ -1,5 +1,14 @@
-var calendarData;
+const appRoutes = require('../routes/appointment-routes');
+const passport = require('passport');
+var startDateObj = appRoutes.startDateObj;
+const mongoose = require('mongoose');
+var endDateObj = appRoutes.endDateObj;
+const Event = require('../models/event_model');
 
+
+var calendarData;
+var eventID;
+var gID;
 const fs = require('fs');
 const readline = require('readline');
 const {google} = require('googleapis');
@@ -101,11 +110,35 @@ function gCal(functionName) {
         if (events.length) {
           console.log('Upcoming 10 events:');
           events.map((event, i) => {
-            const start = event.start.dateTime || event.start.date;
-            console.log(`${start} - ${event.summary}`);
-            eventNames[i] = event.summary;
+            Event.findOne({
+              event_id: event.id
+          }).then((currentEvent) => {
+              if(currentEvent){
+                  //User exists
+                  console.log('Event already exists', currentEvent);
+              }else{
+              const ev = new Event({ // parse event
+              _id: mongoose.Types.ObjectId(),
+              userID: gID,
+              event_id: event.id,
+              summary: event.summary,
+              location: event.location,
+              description: event.description,
+              start: event.start.dateTime,
+              end: event.end.dateTime
+            });
+
+            console.log("event is: " + ev)
+            console.log("Attempting to store in db...")
+            ev.save() // store event in db
+            .then(result => {
+              console.log(result); // display stored event
+               // res.status(201).json({
+            console.log("status: Event Stored");
           });
-          console.log("Array of event names:", eventNames);
+        }
+      });
+          });
         } else {
           console.log('No upcoming events found.');
         }
@@ -116,25 +149,26 @@ function gCal(functionName) {
       console.log("deleteEvent function initiated");
       console.log("This is the function name:", functionName);
       var calendarId = 'primary';
-      var eventId = 'f83sk9fetg49kt8qbtodeqm9kc'; // hard coded ID
       const calendar = google.calendar({version: 'v3', auth});
 
       var params = {
         calendarId: calendarId,
-        eventId: eventId
+        eventId: eventID
       };
 
       calendar.events.delete(params, (res) => {
-        if (res) return console.log('Event Deletion Verification: ' + res);
-        // const events = res.data.items;
-        // if (events.length) {
-        //   console.log('Upcoming 10 events to delete:');
-        //   events.map((event, i) => {
-        //     console.log(`${event.id}`);
-        //   });
-        // } else {
-        //   console.log('No upcoming events found to delete.');
-        // }
+        if (res) 
+        {
+          return console.log('Event Deletion Verification: ' + res);
+        }else{
+          Event.deleteOne({event_id : eventID},function(err, obj) {
+            if (err){
+              throw err;
+            }else{
+              console.log("1 document deleted");
+            }
+        });
+      }
       });
     }
 
@@ -206,16 +240,20 @@ function gCal(functionName) {
 }
 
 module.exports = { insEvent : function insEvent(data){
-    calendarData = data;
-    gCal("insertEvents");
+  calendarData = data;
+  gCal("insertEvents");
   }, 
-  listEvent : function listEvent(){
+  listEvent : function listEvent(id){
+    gID = id;
     gCal("listEvents");
+    return "done";
   },
-  deleteEvent : function deleteEvent(){
+  deleteEvent: function deleteEvent(dEvent){
+    eventID = dEvent;
     gCal("deleteEvent");
   },
-  updateEvent : function updateEvent(){
+  updateEvent: function updateEvent(){
     gCal("updateEvent");
   }
 }
+  

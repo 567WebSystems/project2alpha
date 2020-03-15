@@ -1,4 +1,5 @@
 //validates the appointment form before proccessing further
+
 function formValidation(){
   var error = document.getElementById('error');
   if(document.getElementById('summary').value == ""){
@@ -64,4 +65,12 @@ function formValidation(){
   return true;
 }
 
-console.log("Script.js is loaded");
+function del(eventID,eventSummary){
+  if(confirm("Confirm do you want to delete "+ eventSummary +" event?")){
+    $.ajax({url: 'http://localhost:3000/appointment/view-appointment', 
+    data: {de:eventID},
+    type: "POST",
+    success:function(res){
+    }});
+  }
+}

@@ -22,6 +22,7 @@
           <a class="logout-btn" href="/auth/logout"><span id="logout-icon"></span>Logout</a>
       </nav>
       <section id="appointmentForm">
+        <h1>Welcome, <%=user%></h1>
         <h1>Appointment Form</h1>
         <form method="post" action="/appointment" onsubmit="return(formValidation())" >
           <table align="center" id="form">
