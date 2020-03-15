@@ -15,7 +15,7 @@ const authCheck = (req,res, next) =>{
 };
 
 router.get('/',authCheck,(req,res)=>{
-    res.render('appointment',{user:req.user});
+    res.render('appointment',{user:req.user.userName});
 });
 
 router.get('/view-appointment',authCheck,(req,res)=>{
