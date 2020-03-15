@@ -15,6 +15,7 @@ body {
 nav {
   background-color: white;
   overflow: hidden;
+  height: 45px;
   border-bottom: 2px solid #bdc3c7;
   -webkit-box-shadow: 0 10px 5px -10px #bdc3c7;
 	-moz-box-shadow: 0 10px 5px -10px #bdc3c7;
@@ -139,4 +140,8 @@ input[type=submit], .btn{
 
 .main-logo{
   text-align: center;
+}
+
+.logo{
+  height: 100%;
 }
