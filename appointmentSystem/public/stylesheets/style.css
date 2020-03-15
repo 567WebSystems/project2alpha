@@ -136,3 +136,7 @@ input[type=submit], .btn{
   font-size: 14px;
   letter-spacing: 1px;
 }
+
+.main-logo{
+  text-align: center;
+}
